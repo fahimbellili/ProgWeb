@@ -7,7 +7,7 @@ var passwordHash = require('password-hash');
 
 var mongo = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://admin1:admin1@ds247191.mlab.com:47191/off";
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -19,13 +19,13 @@ const app = express();
 const ProtectedRoutes = express.Router();
 app.use('/api', ProtectedRoutes);
 const jwt = require('jsonwebtoken');
-const config = require('./configuration/config');
+//const config = require('./configuration/config');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
 app.use(express.static('media'));
-app.set('Secret', config.secret);
+//app.set('Secret', config.secret);
 
 const qs = require('querystring');
 const nodemailer = require('nodemailer');
@@ -83,6 +83,21 @@ ProtectedRoutes.use((req, res, next) => {
  * Partie API
  */
 
+
+app.get('/getAll', function (req, res) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) throw err;
+        var dbo = db.db("off");
+        dbo.collection("recipes").find({}).toArray(function (err, result) {
+            if (err) throw err;
+            db.close();
+            res.send({
+                passed: true,
+                result: result,
+            });
+        });
+    });
+});
 
 //Partie Swarms :
 

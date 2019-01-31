@@ -3,7 +3,7 @@
 module.exports = class Recipe {
 
 
-    constructor(id, name, ingredients[], user, comments[]) {
+    constructor(id, name, ingredients, user, comments) {
         this._id = id;
         this._name = name;
         this._ingredients = ingredients;

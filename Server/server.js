@@ -16,9 +16,10 @@ var url = "mongodb://admin1:admin1@ds247191.mlab.com:47191/off";
 var db;
 
 const dbName = "off";
-const dbRecipe = "recipe";
-const dbPrices = "prices";
-const dbComments = "comments";
+const collFood = "france";
+const collRecipe = "recipes";
+const collPrices = "prices";
+const collComments = "comments";
 
 var alimentsName = [];
 var alimentsWithoutAllergens = [];
@@ -40,7 +41,7 @@ async function initAliments() {
     MongoClient.connect(url, function (err, db) {
             if (err) throw err;
             db = mongoClient.db(dbName);
-            const collection = db.collection("france");
+            const collection = db.collection(collFood);
             collection.find({
                 $or: [
                     {"nutriments.salt_100g": {$exists: true}},
@@ -68,7 +69,7 @@ async function initAliments() {
     MongoClient.connect(url, function (err, db) {
             if (err) throw err;
             db = mongoClient.db(dbName);
-            const collection = db.collection("france");
+            const collection = db.collection(collFood);
             let query = {allergens_from_ingredients: ""};
             collection.find({
                 $or: [
@@ -98,7 +99,7 @@ async function initAliments() {
     MongoClient.connect(url, function (err, db) {
             if (err) throw err;
             db = mongoClient.db(dbName);
-            const collection = db.collection("france");
+            const collection = db.collection(collFood);
 
             collection.find({"product_name": /.*BIO.*/i})
                 .toArray(function (err, docs) {
@@ -157,7 +158,7 @@ app.get("/getProduct/:id", async function (req, res, next) {
     MongoClient.connect(url, function (err) {
         if (err) throw err;
         let query = {_id: id};
-        db.collection("france").find(query).toArray(function (err, result) {
+        db.collection(collFood).find(query).toArray(function (err, result) {
             if (err) throw err;
             res.send({
                 passed: true,
@@ -170,7 +171,7 @@ app.get("/getProduct/:id", async function (req, res, next) {
 app.get("/getScore/:idProduct", async function (req, res, next) {
     const id = req.params.idProduct;
     let query = {id: id};
-    const collection = await db.collection("france");
+    const collection = await db.collection(collFood);
     collection
         .find(query)
         .toArray(function (err, docs) {
@@ -224,9 +225,9 @@ app.get("/getScore/:idProduct", async function (req, res, next) {
 
 app.get("/getRecipe/:id", async function (req, res, next) {
     const id = req.params.id;
-    const collection = await db.collection(dbRecipe);
+    const collection = await db.collection(collRecipe);
     let query = {id: +id};
-    collection("france").find(query).toArray(function (err, result) {
+    collection(collFood).find(query).toArray(function (err, result) {
         if (err) throw err;
         res.send({
             result: result
@@ -236,9 +237,9 @@ app.get("/getRecipe/:id", async function (req, res, next) {
 
 app.get("/getComments/:id", async function (req, res, next) {
     const id = req.params.id;
-    const collection = await db.collection(dbRecipe);
+    const collection = await db.collection(collRecipe);
     let query = {idRecipe: +id};
-    collection("comments").find(query).toArray(function (err, result) {
+    collection(collComments).find(query).toArray(function (err, result) {
         if (err) throw err;
         res.send({
             result: result
@@ -265,7 +266,7 @@ app.post("/addPrice", async function (req, res, next) {
         date: date,
         nameOfProduct: nameOfProduct
     };
-    db.collection("prices").insertOne(obj, function(err, res) {
+    db.collection(collPrices).insertOne(obj, function(err, res) {
         if (err) throw err;
     });
     res.send({
@@ -280,7 +281,7 @@ app.post("/addRecipe", async function (req, res, next) {
         name: name,
         ingredients: ingredients
     };
-    db.collection("recipe").insertOne(obj, function(err, res) {
+    db.collection(collRecipe).insertOne(obj, function(err, res) {
         if (err) throw err;
     });
     res.send({
@@ -299,7 +300,7 @@ app.post("/addComment", async function (req, res, next) {
         content: content
 
     };
-    db.collection("comments").insertOne(obj, function(err, res) {
+    db.collection(collComments).insertOne(obj, function(err, res) {
         if (err) throw err;
     });
     res.send({

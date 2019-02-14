@@ -122,7 +122,7 @@ async function initAliments() {
 
             collection.find()
                 .toArray(function (err, docs) {
-                    idsRecipes=docs.length;
+                    idsRecipes = docs.length;
                 });
         }
     );
@@ -158,7 +158,7 @@ app.get("/", function (req, res) {
         "  <li>addComment/ : req post (pseudoUser, idRecipe, contentComment) : ajoute un commentaire à la recette d’id “id”</li>\n" +
         "  <li>getComments/idRecipe : return commentaires d’une recette d’id : “id”</li>\n" +
         "  <li>getRecipe/id : return la recette d’id : “id\"</li>\n" + "</ul>"
-    res.render(
+    res.send(
         print
     )
 });
@@ -279,58 +279,48 @@ app.get("/getComments/:id", async function (req, res, next) {
 
 app.get("/getRecipeBio", async function (req, res) {
     let tabToBeReturned = [];
-    let data = [];
-    let recipeIsBio;
-    let ingredients;
-
     const collection = db.collection(collRecipe);
-    collection.find().toArray(function (err, result) {
-        if (err) throw err;
-        data = result;
-        console.log("data : "+data);
-    });
-    for (let i = 0; i < data.length; i++) {
-        recipeIsBio = true;
-        ingredients = data[i].ingredients;
-        for (let j = 0; j < ingredients.length; j++) {
-            if (alimentsBio.indexOf(ingredients[j]) === -1) {
-                recipeIsBio = false;
+    await collection.find().forEach(function (doc) {
+        let recipeIsBio = false;
+        let ingredients = doc.ingredients;
+        ingredients.forEach(function (item) {
+            if (item.name.includes("bio")) {
+                recipeIsBio = true;
             }
-        }
+        });
         if (recipeIsBio) {
-            tabToBeReturned.push(data[i]);
+            tabToBeReturned.push(doc);
+            recipeIsBio = false;
         }
-    }
+    });
     res.send({
-        result: tabToBeReturned
+        result: tabToBeReturned,
+        length: tabToBeReturned.length
     });
 });
 
 app.get("/getRecipeWithoutAllergens", async function (req, res) {
     let tabToBeReturned = [];
-    let data = [];
-    let recipeIsWithoutAllergens;
-    let ingredients;
-
     const collection = db.collection(collRecipe);
-    collection.find().toArray(function (err, result) {
-        if (err) throw err;
-        data = result;
+    await collection.find().forEach(function (doc) {
+        let recipeIsWA = true;
+        let ingredients = doc.ingredients;
+        ingredients.forEach(function (item) {
+            alimentsWithoutAllergens.forEach(function (awa) {
+                let recipeIsWA = true;
+                if (item.name === awa.name) {
+                    recipeIsWA = false;
+                }
+            });
+        });
+        if (recipeIsWA) {
+            tabToBeReturned.push(doc);
+        }
+        recipeIsWA = true;
     });
-    for (let i = 0; i < data.length; i++) {
-        recipeIsWithoutAllergens = true;
-        ingredients = data[i].ingredients;
-        for (let j = 0; j < ingredients.length; j++) {
-            if (alimentsWithoutAllergens.indexOf(ingredients[j]) === -1) {
-                recipeIsWithoutAllergens = false;
-            }
-        }
-        if (recipeIsWithoutAllergens) {
-            tabToBeReturned.push(data[i]);
-        }
-    }
     res.send({
-        result: tabToBeReturned
+        result: tabToBeReturned,
+        length: tabToBeReturned.length
     });
 });
 
@@ -344,6 +334,7 @@ app.post("/addPrice", async function (req, res, next) {
     let lat = req.body.lat;
     let long = req.body.long;
     let date = new Date().getTime();
+    let idOfProduct = req.body.idOfProduct;
     let nameOfProduct = req.body.nameOfProduct;
     var obj = {
         price: price,
@@ -351,6 +342,7 @@ app.post("/addPrice", async function (req, res, next) {
         lat: lat,
         long: long,
         date: date,
+        idOfProduct: idOfProduct,
         nameOfProduct: nameOfProduct
     };
     db.collection(collPrices).insertOne(obj, function (err, res) {

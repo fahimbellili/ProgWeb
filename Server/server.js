@@ -1,10 +1,8 @@
 const MongoClient = require("mongodb").MongoClient;
-const assert = require("assert");
 var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 var _ = require("lodash");
-var ObjectID = require("mongodb").ObjectID;
 
 var app = express();
 
@@ -324,6 +322,46 @@ app.get("/getRecipeWithoutAllergens", async function (req, res) {
     });
 });
 
+app.get("/getPrice/:idRecipe",async function (req, res) {
+    let idRecipe = req.params.idRecipe;
+    let price = 0;
+    let productWithoutPrice = 0;
+    const collectionRecipe = db.collection(collRecipe);
+    const collectionPrice = db.collection(collPrices);
+    let idsIngredients = [];
+    let query = {id: +idRecipe};
+    collectionRecipe.find(query).toArray(function (err, result) {
+        if (err) throw err;
+        result[0].ingredients.forEach(function (doc) {
+            idsIngredients.push(doc.id);
+        });
+        collectionPrice.find().toArray(function(err, result) {
+            let indexMax = result.length;
+            result.forEach(function (doc, index) {
+                let found=false;
+                idsIngredients.forEach(function (ingredient) {
+                    if(doc.idOfProduct === ingredient){
+                        price+=+doc.price;
+                        found=true;
+                    }
+                });
+                if (!found){
+                    productWithoutPrice++;
+                }
+                if (index===indexMax-1){
+                    res.send({
+                        result: price,
+                        withoutPrice: productWithoutPrice
+                    });
+                }
+            });
+
+        });
+
+    });
+
+});
+
 /*
 POST
  */
@@ -345,7 +383,7 @@ app.post("/addPrice", async function (req, res, next) {
         idOfProduct: idOfProduct,
         nameOfProduct: nameOfProduct
     };
-    db.collection(collPrices).insertOne(obj, function (err, res) {
+    await db.collection(collPrices).insertOne(obj, function (err, res) {
         if (err) throw err;
     });
     res.send({
@@ -362,7 +400,7 @@ app.post("/addRecipe", async function (req, res, next) {
         name: name,
         ingredients: ingredients
     };
-    db.collection(collRecipe).insertOne(obj, function (err, res) {
+    await db.collection(collRecipe).insertOne(obj, function (err, res) {
         if (err) throw err;
     });
     res.send({
@@ -380,7 +418,7 @@ app.post("/addComment", async function (req, res, next) {
         idRecipe: idRecipe,
         content: content
     };
-    db.collection(collComments).insertOne(obj, function (err, res) {
+    await db.collection(collComments).insertOne(obj, function (err, res) {
         if (err) throw err;
     });
     res.send({

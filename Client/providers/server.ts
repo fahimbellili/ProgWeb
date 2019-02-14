@@ -64,7 +64,13 @@ export class Server {
         return req;
     }
 
-
+    //getPrice/idRecipe/
+    getPrice(idRecipe) {
+        let req = new XMLHttpRequest();
+        req.open("GET", this.getAllPath()+("/getPrice"+("/")+(idRecipe)), false);
+        req.send(null);
+        return req;
+    }
 
 
 }

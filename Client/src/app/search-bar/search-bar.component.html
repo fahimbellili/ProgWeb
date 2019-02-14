@@ -1,6 +1,6 @@
 <div class="container">
   <mat-form-field class="search-form">
-    <input matInput placeholder="Rechercher un aliment" type="text">
+    <input [(ngModel)]="searchInput" matInput placeholder="Rechercher un aliment" type="text">
   </mat-form-field>
-  <button button="submit" mat-raised-button color="primary">Rechercher</button>
+  <button button="submit" (click)="logRequest(searchInput)" mat-raised-button color="primary">Rechercher</button>
 </div>

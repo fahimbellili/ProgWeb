@@ -1,4 +1,9 @@
-export class ServerProvider {
+import {catchError} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+
+
+export class Server {
 
     path: string;
 
@@ -58,6 +63,8 @@ export class ServerProvider {
         req.send(null);
         return req;
     }
+
+
 
 
 }

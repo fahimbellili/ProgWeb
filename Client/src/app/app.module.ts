@@ -9,11 +9,13 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {SearchBarComponent} from './search-bar/search-bar.component';
 import {Server} from "../../providers/server";
 import {HttpClientModule} from "@angular/common/http";
+import {ProductViewComponent} from './product-view/product-view.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
+        ProductViewComponent,
         SearchBarComponent,
     ],
     imports: [

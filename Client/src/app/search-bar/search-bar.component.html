@@ -1,6 +1,6 @@
-<div class="container">
-  <mat-form-field class="search-form">
-    <input [(ngModel)]="searchInput" matInput placeholder="Rechercher un aliment" type="text">
-  </mat-form-field>
-  <button button="submit" (click)="logRequest(searchInput)" mat-raised-button color="primary">Rechercher</button>
+<div class='app'>
+  <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..." (keydown.enter)="onEnterKey($event)">
+  <ul class='categories'></ul>
+  <div class='results'>
+  </div>
 </div>

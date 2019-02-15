@@ -1,1 +1,6 @@
-<app-search-bar></app-search-bar>
+<div class='app'>
+  <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..." (keydown.enter)="onEnterKey($event)">
+  <ul class='categories'></ul>
+  <div class='results'>
+  </div>
+</div>

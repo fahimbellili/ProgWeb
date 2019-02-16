@@ -10,6 +10,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ProductViewComponent} from './product-view/product-view.component';
 import {RouterModule, Routes} from "@angular/router";
 import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
+import { FoodCardComponent } from './shared/food-card/food-card.component';
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
         AppComponent,
         NavbarComponent,
         ProductViewComponent,
-        RecipeViewComponent
+        RecipeViewComponent,
+        FoodCardComponent
     ],
     imports: [
         BrowserModule,

@@ -10,12 +10,15 @@
   font-size: 20px;
 }
 
-.nav-link:focus {
+/*.nav-link:focus {
   color: darkorange;
-}
-
-
+}*/
 
 .navbar-left {
   width: 200px;
+}
+
+ul li.active a {
+  color: darkorange;
+
 }

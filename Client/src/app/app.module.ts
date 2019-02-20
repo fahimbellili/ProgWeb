@@ -10,7 +10,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {ProductViewComponent} from './product-view/product-view.component';
 import {RouterModule, Routes} from "@angular/router";
 import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
-import { FoodCardComponent } from './shared/food-card/food-card.component';
+import {FoodCardComponent} from './shared/food-card/food-card.component';
+import {ModalModule} from "ngx-bootstrap";
+import {ModalComponent} from './shared/modal/modal.component';
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -24,7 +26,8 @@ const appRoutes: Routes = [
         NavbarComponent,
         ProductViewComponent,
         RecipeViewComponent,
-        FoodCardComponent
+        FoodCardComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,
@@ -32,9 +35,11 @@ const appRoutes: Routes = [
         FormsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
+        ModalModule.forRoot()
     ],
     providers: [Server],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [ModalComponent]
 })
 export class AppModule {
 }

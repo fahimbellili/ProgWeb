@@ -14,7 +14,7 @@ import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
 import {RecipeCardComponent} from "./shared/recipe-card/recipe-card.component";
-import {RecipeModalComponent} from "./recipe-modal/recipe-modal.component";
+import {RecipeModalComponent} from "./shared/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
 
 const appRoutes: Routes = [

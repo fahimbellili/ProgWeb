@@ -13,6 +13,7 @@ import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
 import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
         FormsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
-        ModalModule.forRoot()
+        ModalModule.forRoot(),
+        NgxPaginationModule
     ],
     providers: [Server],
     bootstrap: [AppComponent],

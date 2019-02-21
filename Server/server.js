@@ -54,7 +54,8 @@ async function initAliments() {
                             .map(doc => {
                                 return {
                                     id: doc._id,
-                                    name: doc.product_name
+                                    name: doc.product_name,
+                                    images: doc.images
                                 };
                             })
                             .filter(x => {
@@ -79,7 +80,8 @@ async function initAliments() {
                             .map(doc => {
                                 return {
                                     id: doc._id,
-                                    name: doc.product_name
+                                    name: doc.product_name,
+                                    images: doc.images
                                 };
                             })
                             .filter(x => {
@@ -102,7 +104,8 @@ async function initAliments() {
                             .map(doc => {
                                 return {
                                     id: doc._id,
-                                    name: doc.product_name
+                                    name: doc.product_name,
+                                    images: doc.images
                                 };
                             })
                             .filter(x => {

@@ -2,17 +2,24 @@
     <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
            (keydown.enter)="onEnterKey($event)">
 
-    <!-- Default unchecked -->
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_01">
-        <label class="custom-control-label" for="check_01">Aliments Bio</label>
+        <input type="checkbox" class="custom-control-input" id="check_01" (change)="getAllProducts($event)"
+               [checked]="foodsAllCheck">
+        <label class="custom-control-label" for="check_01">Tous les aliments</label>
     </div>
 
-    <!-- Default unchecked -->
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_02">
-        <label class="custom-control-label" for="check_02">Aliments sans allergène</label>
+        <input type="checkbox" class="custom-control-input" id="check_02" (change)="getBioProducts($event)"
+               [checked]="foodsBioCheck">
+        <label class="custom-control-label" for="check_02">Aliments Bio</label>
     </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getAllergensProduct($event)"
+               [checked]="foodsAllergCheck">
+        <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
+    </div>
+
 
 
     <!--    <select class="form-control">

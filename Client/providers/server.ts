@@ -1,13 +1,14 @@
 import {catchError} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Injectable} from "@angular/core";
 
-
+@Injectable()
 export class Server {
 
     path: string;
 
-    constructor() {
+    constructor(private http: HttpClient) {
         this.path = 'https://offserver2019.herokuapp.com';
     }
 
@@ -43,10 +44,16 @@ export class Server {
         return req;
     }
 
+    /* cette méthode est la même que  getAll si dessous */
+    getAllProducts() : Observable<any>{
+        return this.http.get(this.path + '/getAll')
+    }
+
     getAll() {
         let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getAll'), false);
+        req.open('GET', this.getAllPath() + ('/getAll'), true);
         req.send(null);
+
         return req;
     }
 

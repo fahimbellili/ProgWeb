@@ -1,0 +1,37 @@
+<div class='app row'>
+  <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
+         (keydown.enter)="onEnterKey($event)">
+
+  <!-- Default unchecked -->
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="check_01">
+    <label class="custom-control-label" for="check_01">Aliments Bio</label>
+  </div>
+
+  <!-- Default unchecked -->
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="check_02">
+    <label class="custom-control-label" for="check_02">Aliments sans allergène</label>
+  </div>
+</div>
+
+<div align="center">
+  <button mat-raised-button>Ajouter la recette</button>
+</div>
+
+<div class="container">
+  <ul class="cards">
+    <li class="cards__item" *ngFor="let food of foods?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+      <app-select-recipe-card [food]="food"></app-select-recipe-card>
+    </li>
+  </ul>
+  <pagination-controls class="ngxPage"
+                       (pageChange)="p = $event"
+                       previousLabel="Précédent"
+                       nextLabel="Suivant"
+                       maxSize="9"
+                       directionLinks="true"
+                       autoHide="true"
+                       responsive="true">
+  </pagination-controls>
+</div>

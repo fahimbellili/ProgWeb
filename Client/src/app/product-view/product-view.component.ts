@@ -3,6 +3,7 @@ import {Recipe} from '../../recipe/recipe';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Server} from '../../../providers/server';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
     selector: 'app-product-view',
@@ -12,13 +13,19 @@ import {Server} from '../../../providers/server';
 export class ProductViewComponent implements OnInit {
 
     constructor(public server: Server,
-                private http: HttpClient) {
+                private http: HttpClient,
+                private spinner: NgxSpinnerService) {
     }
 
-    foods: any[];
+    foods: Observable<any>;
 
     ngOnInit() {
-        this.foods = JSON.parse(this.server.getAll().responseText);
+
+        this.server.getAllProducts().subscribe(
+            data => {
+                this.foods = data;
+            }
+        );
     }
 
     onEnterKey(event: any) {

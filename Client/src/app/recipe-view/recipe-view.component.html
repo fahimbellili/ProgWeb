@@ -1,0 +1,14 @@
+<div class='app row'>
+    <input class='search-box' placeholder="Taper le nom d'une recette et appuyer sur Entrée..."
+           (keydown.enter)="onEnterKey($event)">
+</div>
+
+<div class="container">
+    <ul class="cards">
+        <li class="cards__item" *ngFor="let recipe of recipes?.result">
+            <app-recipe-card [recipe]="recipe"></app-recipe-card>
+        </li>
+    </ul>
+</div>
+
+

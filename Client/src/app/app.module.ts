@@ -16,6 +16,7 @@ import {ModalComponent} from './shared/modal/modal.component';
 import {RecipeCardComponent} from "./shared/cards/recipe-card/recipe-card.component";
 import {RecipeModalComponent} from "./shared/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
 import {MatCheckboxModule, MatGridListModule} from "@angular/material";
 import {AddRecipeViewComponent} from "./add-recipe-view/add-recipe-view.component";
 import {SelectRecipeCardComponent} from "./shared/cards/select-recipe-card/select-recipe-card.component";
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         ModalModule.forRoot(),
-        NgxPaginationModule
+        NgxPaginationModule,
+        NgxSpinnerModule
     ],
     providers: [Server],
     bootstrap: [AppComponent],

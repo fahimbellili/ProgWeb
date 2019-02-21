@@ -25,32 +25,4 @@ export class ProductViewComponent implements OnInit {
 
     }
 
-    logRequest() {
-        // let req = this.server.getProduct(this.searchInput);
-        // console.log(req)
-        let ing: string[] = ['ing', 'deg'];
-        var recipe = new Recipe('a', ing);
-
-
-        const recipeStr = JSON.stringify(recipe);
-
-        this.postRecipe(recipe);
-    }
-
-    postRecipe(recipe: Recipe):
-        Observable<Recipe> {
-        const httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'my-auth-token'
-            })
-        };
-        return this.http.post('https://offserver2019.herokuapp.com/addRecipe', recipe, httpOptions)
-            .pipe(this.handleErrorObservable);
-    }
-
-    handleErrorObservable(error: Response | any) {
-        console.error(error.message || error);
-        return error;
-    }
 }

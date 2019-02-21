@@ -362,6 +362,19 @@ app.get("/getPrice/:idRecipe",async function (req, res) {
 
 });
 
+
+app.get("/getAllRecipes", async function (req, res, next) {
+    MongoClient.connect(url, function (err) {
+        if (err) throw err;
+        db.collection(collRecipe).find().toArray(function (err, result) {
+            if (err) throw err;
+            res.send({
+                passed: true,
+                result: result
+            });
+        });
+    });
+});
 /*
 POST
  */

@@ -47,13 +47,26 @@
 
 <div class="container">
 
-    <ngx-spinner *ngIf="spinner.show()"></ngx-spinner>
-
-    <ul class="cards">
-        <li class="cards__item" *ngFor="let food of foods?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+    <ul class="cards" *ngIf="foodBoolAll">
+        <li class="cards__item" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 9, currentPage: p }">
             <app-food-card [food]="food"></app-food-card>
         </li>
     </ul>
+
+
+    <ul class="cards" *ngIf="foodBoolBio">
+        <li class="cards__item" *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+            <app-food-card [food]="food"></app-food-card>
+        </li>
+    </ul>
+
+    <ul class="cards" *ngIf="foodBoolAllerg">
+        <li class="cards__item"
+            *ngFor="let food of foodsWithoutAllergens?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+            <app-food-card [food]="food"></app-food-card>
+        </li>
+    </ul>
+
     <pagination-controls class="ngxPage"
             (pageChange)="p = $event"
             previousLabel="Précédent"

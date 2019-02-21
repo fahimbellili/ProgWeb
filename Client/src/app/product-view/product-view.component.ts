@@ -18,11 +18,10 @@ export class ProductViewComponent implements OnInit {
     foods: any[];
 
     ngOnInit() {
+        this.foods = JSON.parse(this.server.getAll().responseText);
     }
 
     onEnterKey(event: any) {
-        this.foods = JSON.parse(this.server.getAll().responseText);
-        console.log(this.foods);
 
     }
 

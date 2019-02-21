@@ -1,7 +1,7 @@
 import {catchError} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Injectable} from "@angular/core";
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class Server {
@@ -45,8 +45,8 @@ export class Server {
     }
 
     /* cette méthode est la même que  getAll si dessous */
-    getAllProducts() : Observable<any>{
-        return this.http.get(this.path + '/getAll')
+    getAllProducts(): Observable<any> {
+        return this.http.get(this.path + '/getAll');
     }
 
     getAll() {
@@ -57,11 +57,21 @@ export class Server {
         return req;
     }
 
+    /* cette méthode est la même que  getAlimentsBio si dessous */
+    getAllAlimentsBio(): Observable<any> {
+        return this.http.get(this.path + '/getAlimentsBio');
+    }
+
     getAlimentsBio() {
         let req = new XMLHttpRequest();
         req.open('GET', this.getAllPath() + '/getAlimentsBio', false);
         req.send(null);
         return req;
+    }
+
+    /* cette méthode est la même que  getAlimentsWithoutAllergens si dessous */
+    getAllAlimentsWithoutAllergens(): Observable<any> {
+        return this.http.get(this.path + '/getAlimentsWithoutAllergens');
     }
 
     getAlimentsWithoutAllergens() {
@@ -79,14 +89,14 @@ export class Server {
         return req;
     }
 
-    getAllRecipes(){
+    getAllRecipes() {
         let req = new XMLHttpRequest();
         req.open('GET', this.getAllPath() + ('/getAllRecipes'), false);
         req.send(null);
         return req;
     }
 
-    getAllPrices(){
+    getAllPrices() {
         let req = new XMLHttpRequest();
         req.open('GET', this.getAllPath() + ('/getAllPrices'), false);
         req.send(null);

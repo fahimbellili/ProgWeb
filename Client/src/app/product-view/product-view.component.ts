@@ -12,12 +12,11 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class ProductViewComponent implements OnInit {
 
+
     constructor(public server: Server,
                 private http: HttpClient,
                 private spinner: NgxSpinnerService) {
     }
-
-    foods: Observable<any>;
 
     ngOnInit() {
 

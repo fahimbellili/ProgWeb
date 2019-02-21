@@ -2,7 +2,20 @@
     <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
            (keydown.enter)="onEnterKey($event)">
 
-    <select class="form-control">
+    <!-- Default unchecked -->
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_01">
+        <label class="custom-control-label" for="check_01">Aliments Bio</label>
+    </div>
+
+    <!-- Default unchecked -->
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_02">
+        <label class="custom-control-label" for="check_02">Aliments sans allergène</label>
+    </div>
+
+
+<!--    <select class="form-control">
         <option>Type de produit</option>
         <option>Filtre 1</option>
         <option>Filtre 2</option>
@@ -21,7 +34,7 @@
         <option>Filtre 1</option>
         <option>Filtre 2</option>
         <option>Filtre 3</option>
-    </select>
+    </select>-->
 
 </div>
 

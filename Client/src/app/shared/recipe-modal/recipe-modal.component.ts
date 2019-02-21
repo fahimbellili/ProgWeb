@@ -28,8 +28,6 @@ export class RecipeModalComponent implements OnInit {
     }
 
     sendComment(pseudo, comment) {
-        console.log(this.title.id)
-
         let obj = {
             pseudoUser: pseudo.value,
             idRecipe: this.title.id,
@@ -39,6 +37,11 @@ export class RecipeModalComponent implements OnInit {
         (async () => {
             const response = await fetch('https://offserver2019.herokuapp.com/addComment', {
                 method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
                 body: JSON.stringify(obj)
             });
             const content = await response.json();

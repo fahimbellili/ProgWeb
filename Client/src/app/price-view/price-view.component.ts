@@ -23,7 +23,11 @@ export class PriceViewComponent implements OnInit {
 
 
     ngOnInit() {
-        this.foods = JSON.parse(this.server.getAll().responseText).result;
+        this.server.getAllProducts().subscribe(
+            data => {
+                this.foods = data.result;
+            }
+        );
         this.prices = JSON.parse(this.server.getAllPrices().responseText).result;
         console.log(this.prices);
         if (this.map) {

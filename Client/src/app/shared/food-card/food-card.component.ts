@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalComponent} from '../modal/modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Server} from '../../../../providers/server';
 
 @Component({
     selector: 'app-food-card',
@@ -10,18 +11,24 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 export class FoodCardComponent implements OnInit {
 
     modalRef: BsModalRef;
-    @Input() food: any[];
+    @Input() food: any;
+    resultReq: any;
 
-    constructor(private modalService: BsModalService) {
+    constructor(private modalService: BsModalService, public server: Server) {
     }
 
     openModal() {
+        this.resultReq = JSON.parse(this.server.getProduct(this.food.id).responseText);
+        console.log(this.resultReq.result);
+
         this.modalRef = this.modalService.show(ModalComponent, {
             initialState: {
-                title: 'Modal title',
+                title: this.resultReq.result,
                 data: {}
             }
         });
+
+
     }
 
     ngOnInit() {

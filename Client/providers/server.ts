@@ -1,18 +1,23 @@
 import {catchError} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Injectable} from "@angular/core";
 
-
+@Injectable()
 export class Server {
 
     path: string;
 
-    constructor() {
+    constructor(private http: HttpClient) {
         this.path = 'https://offserver2019.herokuapp.com';
     }
 
     getAllPath() {
         return this.path;
+    }
+
+    getAllProducts() : Observable<any>{
+        return this.http.get(this.path + '/getAll')
     }
 
     getScore(idProduct) {
@@ -45,8 +50,9 @@ export class Server {
 
     getAll() {
         let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getAll'), false);
+        req.open('GET', this.getAllPath() + ('/getAll'), true);
         req.send(null);
+
         return req;
     }
 

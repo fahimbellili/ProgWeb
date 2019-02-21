@@ -39,6 +39,9 @@
 </div>
 
 <div class="container">
+
+    <ngx-spinner *ngIf="spinner.show()"></ngx-spinner>
+
     <ul class="cards">
         <li class="cards__item" *ngFor="let food of foods?.result | paginate: { itemsPerPage: 9, currentPage: p }">
             <app-food-card [food]="food"></app-food-card>

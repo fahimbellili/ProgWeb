@@ -463,7 +463,8 @@ app.post("/addComment", async function (req, res, next) {
         if (err) throw err;
     });
     res.send({
-        passed: true
+        passed: true,
+        added: obj
     });
 });
 

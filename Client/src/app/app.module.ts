@@ -9,7 +9,7 @@ import {Server} from "../../providers/server";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductViewComponent} from './product-view/product-view.component';
 import {RouterModule, Routes} from "@angular/router";
-import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
+import {RecipeViewComponent} from "./recipe/recipe-view/recipe-view.component";
 import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
@@ -18,13 +18,13 @@ import { PriceViewComponent } from './price-view/price-view.component';
 import { CardFoodPriceComponent } from './price-view/card-food-price/card-food-price.component';
 import { AddPriceModalComponent } from './price-view/add-price-modal/add-price-modal.component';
 
-import {RecipeCardComponent} from "./shared/cards/recipe-card/recipe-card.component";
-import {RecipeModalComponent} from "./shared/recipe-modal/recipe-modal.component";
+import {RecipeCardComponent} from "./recipe/recipe-card/recipe-card.component";
+import {RecipeModalComponent} from "./recipe/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
 import {MatCheckboxModule, MatGridListModule} from "@angular/material";
-import {AddRecipeViewComponent} from "./add-recipe-view/add-recipe-view.component";
-import {SelectRecipeCardComponent} from "./shared/cards/select-recipe-card/select-recipe-card.component";
+import {AddRecipeViewComponent} from "./recipe/add-recipe-view/add-recipe-view.component";
+import {SelectRecipeCardComponent} from "./recipe/select-recipe-card/select-recipe-card.component";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},

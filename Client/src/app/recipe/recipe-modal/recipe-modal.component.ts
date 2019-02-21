@@ -19,12 +19,10 @@ export class RecipeModalComponent implements OnInit {
 
     ngOnInit() {
         this.comments = JSON.parse(this.server.getComments(this.title.id).responseText).result;
-        console.log(this.comments)
     }
 
     openDetails(product) {
         this.productDetails = JSON.parse(this.server.getProduct(product.id).responseText).result;
-        console.log(this.productDetails)
     }
 
     sendComment(pseudo, comment) {

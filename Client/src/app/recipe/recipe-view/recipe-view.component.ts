@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Server} from "../../../providers/server";
+import {Server} from "../../../../providers/server";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -16,9 +16,13 @@ export class RecipeViewComponent implements OnInit {
     recipes: any[];
 
     ngOnInit() {
-        this.recipes = JSON.parse(this.server.getAllRecipes().responseText);
-        console.log(this.recipes)
+        this.server.getAllRecipes().subscribe(
+            data => {
+                this.recipes = data;
+            }
+        );
     }
+
 
     onEnterKey(event: any) {
 

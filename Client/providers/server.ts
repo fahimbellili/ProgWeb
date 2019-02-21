@@ -79,11 +79,8 @@ export class Server {
         return req;
     }
 
-    getAllRecipes(){
-        let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getAllRecipes'), false);
-        req.send(null);
-        return req;
+    getAllRecipes() : Observable<any>{
+        return this.http.get(this.path + '/getAllRecipes')
     }
 
     getAllPrices(){

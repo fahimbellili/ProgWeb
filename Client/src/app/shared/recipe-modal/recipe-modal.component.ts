@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BsModalRef} from "ngx-bootstrap";
 
 @Component({
   selector: 'app-recipe-modal',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeModalComponent implements OnInit {
 
-  constructor() { }
+  title;
+
+  constructor(public modalRef: BsModalRef) {
+  }
 
   ngOnInit() {
   }

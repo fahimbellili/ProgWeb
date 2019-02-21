@@ -16,6 +16,7 @@ import {ModalComponent} from './shared/modal/modal.component';
 import {RecipeCardComponent} from "./shared/recipe-card/recipe-card.component";
 import {RecipeModalComponent} from "./shared/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
+import {MatGridList, MatGridListModule} from "@angular/material";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
         BrowserModule,
         MaterialModule,
         FormsModule,
+        MatGridListModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         ModalModule.forRoot(),
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     ],
     providers: [Server],
     bootstrap: [AppComponent],
-    entryComponents: [ModalComponent]
+    entryComponents: [ModalComponent,
+    RecipeModalComponent]
 })
 export class AppModule {
 }

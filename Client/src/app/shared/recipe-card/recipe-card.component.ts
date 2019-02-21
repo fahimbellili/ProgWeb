@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {ModalComponent} from "../modal/modal.component";
+import {Server} from "../../../../providers/server";
+import {RecipeModalComponent} from "../recipe-modal/recipe-modal.component";
 
 @Component({
   selector: 'app-recipe-card',
@@ -10,18 +11,25 @@ import {ModalComponent} from "../modal/modal.component";
 export class RecipeCardComponent implements OnInit {
 
   modalRef: BsModalRef;
-  @Input() recipe: any[];
+  @Input() recipe: any;
+  resultReq: any;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, public server: Server) {
   }
 
+
+
   openModal() {
-    this.modalRef = this.modalService.show(ModalComponent, {
+    this.resultReq = JSON.parse(this.server.getRecipe(this.recipe.id).responseText);
+    console.log(this.resultReq.result);
+
+    this.modalRef = this.modalService.show(RecipeModalComponent, {
       initialState: {
-        title: 'Modal title',
+        title: this.resultReq.result,
         data: {}
       }
     });
+
   }
 
   ngOnInit() {

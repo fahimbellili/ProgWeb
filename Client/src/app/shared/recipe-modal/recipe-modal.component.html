@@ -1,3 +1,21 @@
-<p>
-  recipe-modal works!
-</p>
+<div *ngFor="let titre of title">
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left"> {{ titre.name}} </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h4 class="modal-title pull-left" >
+      <h4 *ngFor="let ing of titre.ingredients">{{ing.name}}</h4>
+    </h4>
+  </div>
+
+  <!--div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+  </div-->
+
+
+</div>

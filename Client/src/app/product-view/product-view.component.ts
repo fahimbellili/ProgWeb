@@ -96,5 +96,31 @@ export class ProductViewComponent implements OnInit {
         this.foodBoolAllerg = false;
     }
 
+    getAllergensProduct(e) {
+        if (e.target.checked) {
+            // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
+            // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);
+
+            this.server.getAllAlimentsWithoutAllergens()
+                .subscribe(data => {
+                        this.foodsWithoutAllergens = data;
+                    }, err => {
+                        console.log(err);
+                    }
+                );
+        }
+
+        if (e.target.checked) {
+            this.foodsAllCheck = false;
+            this.foodsAllergCheck = true;
+            this.foodsBioCheck = false;
+        }
+
+        this.foodBoolAllerg = true;
+        this.foodBoolAll = false;
+        this.foodBoolBio = false;
+    }
+
+
 
 }

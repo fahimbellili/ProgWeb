@@ -72,5 +72,12 @@ export class Server {
         return req;
     }
 
+    getAllRecipes(){
+        let req = new XMLHttpRequest();
+        req.open('GET', this.getAllPath() + ('/getAllRecipes'), false);
+        req.send(null);
+        return req;
+    }
+
 
 }

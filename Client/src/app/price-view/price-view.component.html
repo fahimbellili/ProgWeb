@@ -1,0 +1,21 @@
+<body>
+<header>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <div class="col-xs-12 col-sm-9  margin-zero map-padding">
+                <div class="row  soft-padding  margin-zero">
+                    <div id="map" class="container border-solid-black">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div *ngFor="let food of foods" style="align-content: right; margin: auto; display: inline;">
+                <app-card-food-price [food]="food" style="width: 100%; height: 100%"></app-card-food-price>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

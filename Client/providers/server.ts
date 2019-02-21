@@ -79,5 +79,11 @@ export class Server {
         return req;
     }
 
+    getAllPrices(){
+        let req = new XMLHttpRequest();
+        req.open('GET', this.getAllPath() + ('/getAllPrices'), false);
+        req.send(null);
+        return req;
+    }
 
 }

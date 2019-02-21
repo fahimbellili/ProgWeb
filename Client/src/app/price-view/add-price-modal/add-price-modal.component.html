@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left"> {{ title }} </h4>
+</div>
+<div class="modal-body">
+  <p>{{idProduct}}</p>
+  <p>{{productName}}</p>
+  <div class="row">
+    <form #createPrice = "ngForm" (ngSubmit) = "onClickSubmit(idProduct, productName, createPrice.value)" >
+      <input type = "text" name = "price" placeholder = "Prix" ngModel>
+      <br/>
+      <input type = "text" name = "shop" placeholder = "Magasin concerné" ngModel>
+      <br/>
+      <input type = "submit" value = "submit">
+    </form>
+  </div>
+</div>

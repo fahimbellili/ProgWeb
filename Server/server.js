@@ -362,11 +362,23 @@ app.get("/getPrice/:idRecipe",async function (req, res) {
 
 });
 
-
 app.get("/getAllRecipes", async function (req, res, next) {
     MongoClient.connect(url, function (err) {
         if (err) throw err;
         db.collection(collRecipe).find().toArray(function (err, result) {
+            if (err) throw err;
+            res.send({
+                passed: true,
+                result: result
+            });
+        });
+    });
+});
+
+app.get("/getAllPrices", async function (req, res, next) {
+    MongoClient.connect(url, function (err) {
+        if (err) throw err;
+        db.collection(collPrices).find().toArray(function (err, result) {
             if (err) throw err;
             res.send({
                 passed: true,
@@ -380,6 +392,11 @@ POST
  */
 
 app.post("/addPrice", async function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
+
     let price = req.body.price;
     let shop = req.body.shop;
     let lat = req.body.lat;
@@ -400,11 +417,17 @@ app.post("/addPrice", async function (req, res, next) {
         if (err) throw err;
     });
     res.send({
-        passed: true
+        passed: true,
+        added: obj
     });
 });
 
 app.post("/addRecipe", async function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
+
     idsRecipes++;
     let name = req.body.name;
     let ingredients = req.body.ingredients;
@@ -422,8 +445,13 @@ app.post("/addRecipe", async function (req, res, next) {
 });
 
 app.post("/addComment", async function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, token, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization");
+
     let pseudoUser = req.body.pseudoUser;
-    let idRecipe = req.body.pseudoUser;
+    let idRecipe = req.body.idRecipe;
     let content = req.body.content;
 
     var obj = {

@@ -13,11 +13,15 @@ import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
 import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
+import { PriceViewComponent } from './price-view/price-view.component';
+import { CardFoodPriceComponent } from './price-view/card-food-price/card-food-price.component';
+import { AddPriceModalComponent } from './price-view/add-price-modal/add-price-modal.component';
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
     {path: 'recipe', component: RecipeViewComponent},
-    {path: '', component: ProductViewComponent}
+    {path: '', component: ProductViewComponent},
+    {path: 'price', component: PriceViewComponent}
 ];
 
 @NgModule({
@@ -27,7 +31,10 @@ const appRoutes: Routes = [
         ProductViewComponent,
         RecipeViewComponent,
         FoodCardComponent,
-        ModalComponent
+        ModalComponent,
+        PriceViewComponent,
+        CardFoodPriceComponent,
+        AddPriceModalComponent
     ],
     imports: [
         BrowserModule,
@@ -39,7 +46,7 @@ const appRoutes: Routes = [
     ],
     providers: [Server],
     bootstrap: [AppComponent],
-    entryComponents: [ModalComponent]
+    entryComponents: [ModalComponent, AddPriceModalComponent]
 })
 export class AppModule {
 }

@@ -16,10 +16,6 @@ export class Server {
         return this.path;
     }
 
-    getAllProducts() : Observable<any>{
-        return this.http.get(this.path + '/getAll')
-    }
-
     getScore(idProduct) {
         let req = new XMLHttpRequest();
         req.open('GET', this.getAllPath() + ('/getScore' + ('/') + (idProduct)), false);
@@ -46,6 +42,11 @@ export class Server {
         req.open('GET', this.getAllPath() + ('/getRecipe' + ('/') + (id)), false);
         req.send(null);
         return req;
+    }
+
+    /* cette méthode est la même que  getAll si dessous */
+    getAllProducts() : Observable<any>{
+        return this.http.get(this.path + '/getAll')
     }
 
     getAll() {

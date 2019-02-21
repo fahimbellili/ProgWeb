@@ -28,8 +28,12 @@ export class PriceViewComponent implements OnInit {
                 this.foods = data.result;
             }
         );
-        this.prices = JSON.parse(this.server.getAllPrices().responseText).result;
-        console.log(this.prices);
+        this.server.getAllPrices().subscribe(
+            data => {
+                this.prices = data.result;
+                console.log(this.prices);
+            }
+        );
         if (this.map) {
             this.map.remove();
         }

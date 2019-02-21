@@ -18,17 +18,19 @@ export class RecipeCardComponent implements OnInit {
   }
 
 
-
   openModal() {
-    this.resultReq = JSON.parse(this.server.getRecipe(this.recipe.id).responseText);
-    this.modalRef = this.modalService.show(RecipeModalComponent, {
-      class: 'modal-lg',
-      initialState: {
-        title: this.resultReq.result[0],
-        data: {}
-      },
-    });
-
+    this.server.getRecipe(this.recipe.id).subscribe(
+        data => {
+          this.resultReq = data;
+          this.modalRef = this.modalService.show(RecipeModalComponent, {
+            class: 'modal-lg',
+            initialState: {
+              title: this.resultReq.result[0],
+              data: {}
+            },
+          });
+        }
+    );
   }
 
   ngOnInit() {

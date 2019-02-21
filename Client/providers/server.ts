@@ -9,7 +9,7 @@ export class Server {
     path: string;
 
     constructor(private http: HttpClient) {
-        this.path = 'https://offserver2019.herokuapp.com';
+        this.path = 'http://localhost:8080';
     }
 
     getAllPath() {
@@ -30,18 +30,13 @@ export class Server {
         return req;
     }
 
-    getComments(id) {
-        let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getComments' + ('/') + (id)), false);
-        req.send(null);
-        return req;
+
+    getComments(id) : Observable<any>{
+        return this.http.get(this.path + '/getComments/' + id)
     }
 
-    getRecipe(id) {
-        let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getRecipe' + ('/') + (id)), false);
-        req.send(null);
-        return req;
+    getRecipe(id) : Observable<any>{
+        return this.http.get(this.path + '/getRecipe/' + id)
     }
 
     /* cette méthode est la même que  getAll si dessous */
@@ -93,11 +88,8 @@ export class Server {
         return this.http.get(this.path + '/getAllRecipes')
     }
 
-    getAllPrices() {
-        let req = new XMLHttpRequest();
-        req.open('GET', this.getAllPath() + ('/getAllPrices'), false);
-        req.send(null);
-        return req;
+    getAllPrices() : Observable<any>{
+        return this.http.get(this.path + '/getAllPrices')
     }
 
 }

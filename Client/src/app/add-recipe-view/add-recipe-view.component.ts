@@ -16,7 +16,12 @@ export class AddRecipeViewComponent implements OnInit {
   foods: any[];
 
   ngOnInit() {
-    this.foods = JSON.parse(this.server.getAll().responseText);
+
+    this.server.getAllProducts().subscribe(
+        data => {
+          this.foods = data;
+        }
+    );
   }
 
   onEnterKey(event: any) {

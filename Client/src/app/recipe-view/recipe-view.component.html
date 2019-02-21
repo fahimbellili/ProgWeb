@@ -3,10 +3,6 @@
            (keydown.enter)="onEnterKey($event)">
 </div>
 
-<div align="center">
-    <button mat-raised-button>Ajouter une recette</button>
-</div>
-
 <div class="container">
     <ul class="cards">
         <li class="cards__item" *ngFor="let recipe of recipes?.result">

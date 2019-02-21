@@ -423,7 +423,7 @@ app.post("/addRecipe", async function (req, res, next) {
 
 app.post("/addComment", async function (req, res, next) {
     let pseudoUser = req.body.pseudoUser;
-    let idRecipe = req.body.pseudoUser;
+    let idRecipe = req.body.idRecipe;
     let content = req.body.content;
 
     var obj = {

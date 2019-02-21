@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {Server} from "../../../../providers/server";
-import {RecipeModalComponent} from "../recipe-modal/recipe-modal.component";
+import {Server} from "../../../../../providers/server";
+import {RecipeModalComponent} from "../../recipe-modal/recipe-modal.component";
 
 @Component({
   selector: 'app-recipe-card',
@@ -24,10 +24,11 @@ export class RecipeCardComponent implements OnInit {
     console.log(this.resultReq.result);
 
     this.modalRef = this.modalService.show(RecipeModalComponent, {
+      class: 'modal-lg',
       initialState: {
-        title: this.resultReq.result,
+        title: this.resultReq.result[0],
         data: {}
-      }
+      },
     });
 
   }

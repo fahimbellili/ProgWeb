@@ -13,14 +13,17 @@ import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
 import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
-import {RecipeCardComponent} from "./shared/recipe-card/recipe-card.component";
+import {RecipeCardComponent} from "./shared/cards/recipe-card/recipe-card.component";
 import {RecipeModalComponent} from "./shared/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
-import {MatGridList, MatGridListModule} from "@angular/material";
+import {MatCheckboxModule, MatGridListModule} from "@angular/material";
+import {AddRecipeViewComponent} from "./add-recipe-view/add-recipe-view.component";
+import {SelectRecipeCardComponent} from "./shared/cards/select-recipe-card/select-recipe-card.component";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
     {path: 'recipe', component: RecipeViewComponent},
+    {path: 'addRecipe', component: AddRecipeViewComponent},
     {path: '', component: ProductViewComponent}
 ];
 
@@ -30,9 +33,11 @@ const appRoutes: Routes = [
         NavbarComponent,
         ProductViewComponent,
         RecipeViewComponent,
+        AddRecipeViewComponent,
         FoodCardComponent,
         RecipeModalComponent,
         RecipeCardComponent,
+        SelectRecipeCardComponent,
         ModalComponent
     ],
     imports: [
@@ -40,6 +45,7 @@ const appRoutes: Routes = [
         MaterialModule,
         FormsModule,
         MatGridListModule,
+        MatCheckboxModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
         ModalModule.forRoot(),

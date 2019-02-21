@@ -15,37 +15,42 @@
     </div>
 
 
-<!--    <select class="form-control">
-        <option>Type de produit</option>
-        <option>Filtre 1</option>
-        <option>Filtre 2</option>
-        <option>Filtre 3</option>
-    </select>
+    <!--    <select class="form-control">
+            <option>Type de produit</option>
+            <option>Filtre 1</option>
+            <option>Filtre 2</option>
+            <option>Filtre 3</option>
+        </select>
 
-    <select class="form-control">
-        <option>Type de produit</option>
-        <option>Filtre 1</option>
-        <option>Filtre 2</option>
-        <option>Filtre 3</option>
-    </select>
+        <select class="form-control">
+            <option>Type de produit</option>
+            <option>Filtre 1</option>
+            <option>Filtre 2</option>
+            <option>Filtre 3</option>
+        </select>
 
-    <select class="form-control">
-        <option>Type de produit</option>
-        <option>Filtre 1</option>
-        <option>Filtre 2</option>
-        <option>Filtre 3</option>
-    </select>-->
+        <select class="form-control">
+            <option>Type de produit</option>
+            <option>Filtre 1</option>
+            <option>Filtre 2</option>
+            <option>Filtre 3</option>
+        </select>-->
 
 </div>
 
 <div class="container">
     <ul class="cards">
-
-        <li class="cards__item" *ngFor="let food of foods?.result">
+        <li class="cards__item" *ngFor="let food of foods?.result | paginate: { itemsPerPage: 9, currentPage: p }">
             <app-food-card [food]="food"></app-food-card>
         </li>
-
-
     </ul>
-
+    <pagination-controls class="ngxPage"
+            (pageChange)="p = $event"
+            previousLabel="Précédent"
+            nextLabel="Suivant"
+            maxSize="9"
+            directionLinks="true"
+            autoHide="true"
+            responsive="true">
+    </pagination-controls>
 </div>

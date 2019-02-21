@@ -28,8 +28,6 @@ export class RecipeModalComponent implements OnInit {
     }
 
     sendComment(pseudo, comment) {
-        console.log(this.title.id)
-
         let obj = {
             pseudoUser: pseudo.value,
             idRecipe: this.title.id,

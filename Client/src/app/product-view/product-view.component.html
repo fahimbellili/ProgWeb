@@ -27,24 +27,11 @@
 
 <div class="container">
     <ul class="cards">
-        <li class="cards__item">
-            <app-food-card></app-food-card>
+
+        <li class="cards__item" *ngFor="let food of foods?.result">
+            <app-food-card [food]="food"></app-food-card>
         </li>
 
-<!--        <li class="cards__item">
-            <app-food-card></app-food-card>
-        </li>
-        <li class="cards__item">
-            <app-food-card></app-food-card>
-        </li>
-
-        <li class="cards__item">
-            <app-food-card></app-food-card>
-        </li>
-
-        <li class="cards__item">
-            <app-food-card></app-food-card>
-        </li>-->
 
     </ul>
 

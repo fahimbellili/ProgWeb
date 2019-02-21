@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Recipe} from "../../recipe/recipe";
-import {Observable} from "rxjs";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Server} from "../../../providers/server";
+import {Recipe} from '../../recipe/recipe';
+import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Server} from '../../../providers/server';
 
 @Component({
     selector: 'app-product-view',
@@ -15,29 +15,30 @@ export class ProductViewComponent implements OnInit {
                 private http: HttpClient) {
     }
 
+    foods: any[];
+
     ngOnInit() {
     }
 
     onEnterKey(event: any) {
-        console.log(this.server.getAll().responseText)
+        this.foods = JSON.parse(this.server.getAll().responseText);
+        console.log(this.foods);
+
     }
 
     logRequest() {
         // let req = this.server.getProduct(this.searchInput);
         // console.log(req)
-        let ing: string[] = ["ing", "deg"];
-        var recipe = new Recipe("a", ing);
+        let ing: string[] = ['ing', 'deg'];
+        var recipe = new Recipe('a', ing);
 
 
         const recipeStr = JSON.stringify(recipe);
 
-        this.postRecipe(recipe)
+        this.postRecipe(recipe);
     }
 
-    postRecipe(recipe
-                   :
-                   Recipe
-    ):
+    postRecipe(recipe: Recipe):
         Observable<Recipe> {
         const httpOptions = {
             headers: new HttpHeaders({
@@ -45,14 +46,11 @@ export class ProductViewComponent implements OnInit {
                 'Authorization': 'my-auth-token'
             })
         };
-        return this.http.post("https://offserver2019.herokuapp.com/addRecipe", recipe, httpOptions)
+        return this.http.post('https://offserver2019.herokuapp.com/addRecipe', recipe, httpOptions)
             .pipe(this.handleErrorObservable);
     }
 
-    handleErrorObservable(error
-                              :
-                              Response | any
-    ) {
+    handleErrorObservable(error: Response | any) {
         console.error(error.message || error);
         return error;
     }

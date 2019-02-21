@@ -13,6 +13,8 @@ import {RecipeViewComponent} from "./recipe-view/recipe-view.component";
 import {FoodCardComponent} from './shared/food-card/food-card.component';
 import {ModalModule} from "ngx-bootstrap";
 import {ModalComponent} from './shared/modal/modal.component';
+import {RecipeCardComponent} from "./shared/recipe-card/recipe-card.component";
+import {RecipeModalComponent} from "./recipe-modal/recipe-modal.component";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -27,6 +29,8 @@ const appRoutes: Routes = [
         ProductViewComponent,
         RecipeViewComponent,
         FoodCardComponent,
+        RecipeModalComponent,
+        RecipeCardComponent,
         ModalComponent
     ],
     imports: [

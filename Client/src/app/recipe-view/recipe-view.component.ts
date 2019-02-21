@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Server} from "../../../providers/server";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-recipe-view',
@@ -7,10 +9,19 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RecipeViewComponent implements OnInit {
 
-    constructor() {
+    constructor(public server: Server,
+                private http: HttpClient) {
     }
 
+    recipes: any[];
+
     ngOnInit() {
+        this.recipes = JSON.parse(this.server.getAllRecipes().responseText);
+        console.log(this.recipes)
+    }
+
+    onEnterKey(event: any) {
+
     }
 
 }

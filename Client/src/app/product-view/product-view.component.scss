@@ -89,6 +89,24 @@ img {
   width: 100%;
 }
 
+.custom-control {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3%;
+  font-size: 1.25em;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+
+
+
+
+
 /*
 .cards {
   display: flex;
@@ -174,15 +192,3 @@ img {
 }
 */
 
-.custom-control {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 3%;
-  font-size: 1.25em;
-}
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-}

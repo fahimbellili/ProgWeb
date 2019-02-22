@@ -19,8 +19,6 @@
                [checked]="foodsAllergCheck">
         <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
     </div>
-
-
     <!--    <select class="form-control">
             <option>Type de produit</option>
             <option>Filtre 1</option>
@@ -47,11 +45,11 @@
 <div class="container">
 
     <main class="cards" *ngIf="foodBoolAll">
-            <app-food-card
-                    *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
-                    [food]="food">
+        <app-food-card
+                *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [food]="food">
 
-            </app-food-card>
+        </app-food-card>
     </main>
     <!--
            <ul class="cards" *ngIf="foodBoolBio">

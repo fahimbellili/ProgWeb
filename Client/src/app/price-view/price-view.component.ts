@@ -1,26 +1,22 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from "@angular/forms";
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
 import * as L from 'leaflet';
 import {Server} from "../../../providers/server";
-
 
 @Component({
     selector: 'app-price-view',
     templateUrl: './price-view.component.html',
-    styleUrls: ['./price-view.component.css']
+    styleUrls: ['./price-view.component.scss']
 })
+
 export class PriceViewComponent implements OnInit {
 
-    @ViewChild('map') mapContainer: ElementRef;
-    map: any;
+    myFoodyMap: any;
     foods = [];
     prices = [];
 
-
     constructor(public server: Server) {
     }
-
 
     ngOnInit() {
         this.server.getAllProducts().subscribe(
@@ -32,26 +28,24 @@ export class PriceViewComponent implements OnInit {
             data => {
                 this.prices = data.result;
                 console.log(this.prices);
+                this.loadmap();
             }
         );
-        if (this.map) {
-            this.map.remove();
-        }
-        this.loadmap();
+
     }
 
     loadmap() {
-        this.map = L.map("map").fitWorld();
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 30
-        }).addTo(this.map);
-        this.map.locate({
+        this.myFoodyMap = L.map('foodymap').fitWorld();
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: 'Foody Map'
+        }).addTo(this.myFoodyMap);
+        this.myFoodyMap.locate({
             setView: true,
             maxZoom: 12
         }).on('locationerror', (err) => {
-            console.log(err.message);
+            console.log(err);
         });
-        var content = new Map();
         var monIcone = L.icon({
             iconUrl: 'https://image.flaticon.com/icons/svg/126/126083.svg',
             iconSize: [40, 40],
@@ -60,10 +54,7 @@ export class PriceViewComponent implements OnInit {
             var current = this.prices[i];
             var popup = L.popup();
             var customPopup = "Magasin : " + current.shop + " / " + "Price : " + current.price;
-            L.marker([current.lat, current.long], {icon: monIcone}).bindPopup(customPopup).addTo(this.map);
-
+            L.marker([current.lat, current.long], {icon: monIcone}).bindPopup(customPopup).addTo(this.myFoodyMap);
         }
-
-
     }
 }

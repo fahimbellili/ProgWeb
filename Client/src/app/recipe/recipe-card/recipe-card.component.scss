@@ -1,8 +1,53 @@
+.card {
+  flex: 0 0 200px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  height: 200px;
+}
+
+/*
+.card img {
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+*/
+
+.card .text {
+  padding: 0 10px 10px;
+  text-align: center;
+  vertical-align: baseline;
+  top: auto;
+  color: dimgray;
+  height: 200px;
+  background-image: url("../../../assets/back_01.png");
+  background-repeat: no-repeat;
+}
+
+.card .btnCard {
+  position: relative;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  //border: 1px solid lightgray;
+  //border-radius: 1rem;
+  color: darkgray;
+  padding: 0.5rem;
+  //text-transform: lowercase;
+  text-align: center;
+
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+*/
 
 /*
 html {
@@ -22,6 +67,7 @@ body {
   -moz-font-feature-settings: "liga" on;
 }
 */
+/*
 img {
     height: auto;
     max-width: 100%;
@@ -41,8 +87,9 @@ img {
     display: block;
     width: 100%;
 }
+*/
 
-.cards {
+/*.cards {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -120,5 +167,4 @@ img {
     font-size: 0.875rem;
     line-height: 1.5;
     margin-bottom: 1.25rem;
-}
-
+}*/

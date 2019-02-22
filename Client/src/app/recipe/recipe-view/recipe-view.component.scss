@@ -1,3 +1,23 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.ngxPagination /deep/ .ngx-pagination .current {
+  background: transparent;
+  font-size: 24px;
+  border-bottom: 3px solid red;
+  color: black;
+}
+
+.ngxPagination /deep/ .ngx-pagination  {
+  position: relative;
+  top: 20px;
+  left: 30%;
+  font-size: 20px;
+}
+
 .app {
   display: flex;
   position: relative;

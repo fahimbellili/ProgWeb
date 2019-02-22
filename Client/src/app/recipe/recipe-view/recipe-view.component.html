@@ -3,12 +3,35 @@
            (keydown.enter)="onEnterKey($event)">
 </div>
 
+<!--<div class="container">-->
+    <!--<ul class="cards">-->
+        <!--<li class="cards__item" *ngFor="let recipe of recipes?.result">-->
+            <!--<app-recipe-card [recipe]="recipe"></app-recipe-card>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+
 <div class="container">
-    <ul class="cards">
-        <li class="cards__item" *ngFor="let recipe of recipes?.result">
-            <app-recipe-card [recipe]="recipe"></app-recipe-card>
-        </li>
-    </ul>
+    <main class="cards">
+
+        <app-recipe-card
+                *ngFor="let recipe of recipes?.result"
+                [recipe]="recipe">
+
+        </app-recipe-card>
+
+    </main>
 </div>
 
-
+<div class="ngxPagination">
+    <pagination-controls class="ngxPage"
+                         (pageChange)="p = $event"
+                         previousLabel="Précèdent"
+                         nextLabel="Suivant"
+                         maxSize="10"
+                         directionLinks="true"
+                         autoHide="true"
+                         responsive="true">
+    </pagination-controls>
+</div>

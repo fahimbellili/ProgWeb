@@ -1,6 +1,19 @@
+<!--
 <div class="card">
   <div class="card__content">
     <div class="card__title">{{recipe.name}}</div>
-    <button (click)="openModal()" class="btn btn--block card__btn">Voir plus de détails</button>
+    <button (click)="openModal()" class="btn btn&#45;&#45;block card__btn">Voir plus de détails</button>
   </div>
 </div>
+-->
+<article class="card">
+  <!--img src="../../../assets/back_01.png" alt="Sample photo"-->
+  <div class="text">
+    <br>
+    <h4 style="vertical-align: bottom">{{recipe.name}}</h4>
+    <!--p>Collaboratively administrate empowered markets via plug-and-play networks.</p-->
+  </div>
+  <div class="btnCard">
+    <button (click)="openModal()" class="btn">Voir plus de détails</button>
+  </div>
+</article>

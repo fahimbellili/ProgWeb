@@ -180,3 +180,9 @@ img {
   padding-top: 3%;
   font-size: 1.25em;
 }
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}

@@ -46,13 +46,14 @@
 
 <div class="container">
 
-    <div class="cards" *ngIf="foodBoolAll">
-        <div class="cards__item" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 9, currentPage: p }">
-            <app-food-card [food]="food"></app-food-card>
-        </div>
-    </div>
-    <!--
+    <main class="cards" *ngIf="foodBoolAll">
+            <app-food-card
+                    *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                    [food]="food">
 
+            </app-food-card>
+    </main>
+    <!--
            <ul class="cards" *ngIf="foodBoolBio">
                <li class="cards__item" *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 9, currentPage: p }">
                    <app-food-card [food]="food"></app-food-card>
@@ -65,7 +66,6 @@
                    <app-food-card [food]="food"></app-food-card>
                </li>
            </ul>-->
-
 
     <!--<main class="cards">
         <article class="card" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }">

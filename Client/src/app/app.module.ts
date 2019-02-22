@@ -22,9 +22,10 @@ import {RecipeCardComponent} from "./recipe/recipe-card/recipe-card.component";
 import {RecipeModalComponent} from "./recipe/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
-import {MatCheckboxModule, MatGridListModule} from "@angular/material";
+import {MatCheckboxModule, MatGridListModule, MatCardModule} from "@angular/material";
 import {AddRecipeViewComponent} from "./recipe/add-recipe-view/add-recipe-view.component";
 import {SelectRecipeCardComponent} from "./recipe/select-recipe-card/select-recipe-card.component";
+import {RecipeItemsService} from "../../providers/recipe-items.service";
 
 const appRoutes: Routes = [
     {path: 'product', component: ProductViewComponent},
@@ -56,6 +57,7 @@ const appRoutes: Routes = [
         MaterialModule,
         FormsModule,
         MatGridListModule,
+        MatCardModule,
         MatCheckboxModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),
@@ -63,7 +65,7 @@ const appRoutes: Routes = [
         NgxPaginationModule,
         NgxSpinnerModule
     ],
-    providers: [Server],
+    providers: [Server, RecipeItemsService],
     bootstrap: [AppComponent],
     entryComponents: [ModalComponent, AddPriceModalComponent, RecipeModalComponent]
 })

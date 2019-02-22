@@ -1,7 +1,7 @@
 <div class="card">
-  <img src="https://unsplash.it/800/600?image=59">
+  <img [src]="getImgUrl()">
   <div class="card__content">
     <div class="card__title">{{food.name}}</div>
-    <button (click)="addToRecipe()" class="btn btn--block card__btn">Ajouter à la recette</button>
+    <button (click)="addToRecipe(food)" class="btn btn--block card__btn">Ajouter à la recette</button>
   </div>
 </div>

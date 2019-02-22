@@ -56,8 +56,6 @@ export class RecipeModalComponent implements OnInit {
                 body: JSON.stringify(obj)
             });
             const content = await response.json();
-
-            console.log(content);
         })();
 
     }

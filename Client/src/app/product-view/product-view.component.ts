@@ -1,8 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {Server} from '../../../providers/server';
 import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap";
 
 @Component({
     selector: 'app-product-view',
@@ -95,7 +94,7 @@ export class ProductViewComponent implements OnInit {
         this.foodBoolAllerg = false;
     }
 
-    getAllergensProduct(e) {
+    getWithoutAllergensProduct(e) {
         if (e.target.checked) {
             // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
             // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);

@@ -15,7 +15,7 @@
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getAllergensProduct($event)"
+        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getWithoutAllergensProduct($event)"
                [checked]="foodsAllergCheck">
         <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
     </div>
@@ -51,6 +51,23 @@
 
         </app-food-card>
     </main>
+
+    <main class="cards" *ngIf="foodBoolBio">
+        <app-food-card
+                *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [food]="food">
+
+        </app-food-card>
+    </main>
+
+    <main class="cards" *ngIf="foodBoolAllerg">
+        <app-food-card
+                *ngFor="let food of foodsWithoutAllergens?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [food]="food">
+
+        </app-food-card>
+    </main>
+
     <!--
            <ul class="cards" *ngIf="foodBoolBio">
                <li class="cards__item" *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 9, currentPage: p }">
@@ -76,10 +93,11 @@
         </article>
     </main>-->
 </div>
-<div>
+
+<div class="ngxPagination">
     <pagination-controls class="ngxPage"
                          (pageChange)="p = $event"
-                         previousLabel="Précédent"
+                         previousLabel="Précèdent"
                          nextLabel="Suivant"
                          maxSize="9"
                          directionLinks="true"

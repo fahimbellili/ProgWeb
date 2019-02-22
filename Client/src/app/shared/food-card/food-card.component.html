@@ -1,7 +1,19 @@
-<div class="card">
-  <img [src]="getImgUrl()">
-  <div class="card__content">
-    <div class="card__title">{{food.name}}</div>
-    <button (click)="openModal()" class="btn btn--block card__btn">Voir plus de détails</button>
-  </div>
-</div>
+<!--<div class="card">
+    <img [src]="getImgUrl()">
+    <div class="card__content">
+        <div class="card__title">{{food.name}}</div>
+        <button (click)="openModal()" class="btn btn&#45;&#45;block card__btn">Voir plus de détails</button>
+    </div>
+</div>-->
+<main class="cards">
+    <article class="card">
+        <img [src]="getImgUrl()" alt="Sample photo">
+        <div class="text">
+            <h3>{{food.name}}</h3>
+            <p>Collaboratively administrate empowered markets via plug-and-play networks.</p>
+            <button (click)="openModal()" class="btn btn--block card__btn">Voir plus de détails</button>
+        </div>
+    </article>
+</main>
+
+

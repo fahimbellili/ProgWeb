@@ -21,7 +21,6 @@
     </div>
 
 
-
     <!--    <select class="form-control">
             <option>Type de produit</option>
             <option>Filtre 1</option>
@@ -47,33 +46,47 @@
 
 <div class="container">
 
-    <ul class="cards" *ngIf="foodBoolAll">
-        <li class="cards__item" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+    <div class="cards" *ngIf="foodBoolAll">
+        <div class="cards__item" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 9, currentPage: p }">
             <app-food-card [food]="food"></app-food-card>
-        </li>
-    </ul>
+        </div>
+    </div>
+    <!--
+
+           <ul class="cards" *ngIf="foodBoolBio">
+               <li class="cards__item" *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+                   <app-food-card [food]="food"></app-food-card>
+               </li>
+           </ul>
+
+           <ul class="cards" *ngIf="foodBoolAllerg">
+               <li class="cards__item"
+                   *ngFor="let food of foodsWithoutAllergens?.result | paginate: { itemsPerPage: 9, currentPage: p }">
+                   <app-food-card [food]="food"></app-food-card>
+               </li>
+           </ul>-->
 
 
-    <ul class="cards" *ngIf="foodBoolBio">
-        <li class="cards__item" *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 9, currentPage: p }">
-            <app-food-card [food]="food"></app-food-card>
-        </li>
-    </ul>
-
-    <ul class="cards" *ngIf="foodBoolAllerg">
-        <li class="cards__item"
-            *ngFor="let food of foodsWithoutAllergens?.result | paginate: { itemsPerPage: 9, currentPage: p }">
-            <app-food-card [food]="food"></app-food-card>
-        </li>
-    </ul>
-
+    <!--<main class="cards">
+        <article class="card" *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }">
+            <img [src]="getImgUrl()" alt="Sample photo">
+            <div class="text">
+                <h3>{{food.name}}</h3>
+                &lt;!&ndash;p>Collaboratively administrate empowered markets via plug-and-play networks.</p&ndash;&gt;
+                <button (click)="openModal()" class="btn btn&#45;&#45;block card__btn">Voir plus de détails</button>
+            </div>
+        </article>
+    </main>-->
+</div>
+<div>
     <pagination-controls class="ngxPage"
-            (pageChange)="p = $event"
-            previousLabel="Précédent"
-            nextLabel="Suivant"
-            maxSize="9"
-            directionLinks="true"
-            autoHide="true"
-            responsive="true">
+                         (pageChange)="p = $event"
+                         previousLabel="Précédent"
+                         nextLabel="Suivant"
+                         maxSize="9"
+                         directionLinks="true"
+                         autoHide="true"
+                         responsive="true">
     </pagination-controls>
 </div>
+

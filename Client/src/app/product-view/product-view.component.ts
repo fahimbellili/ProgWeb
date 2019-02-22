@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Recipe} from '../../recipe/recipe';
-import {Observable} from 'rxjs';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Server} from '../../../providers/server';
 import {NgxSpinnerService} from "ngx-spinner";
+import {BsModalRef} from "ngx-bootstrap";
 
 @Component({
     selector: 'app-product-view',
@@ -12,9 +11,9 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class ProductViewComponent implements OnInit {
 
-    foodsAll: Observable<any>;
-    foodsBio: Observable<any>;
-    foodsWithoutAllergens: Observable<any>;
+    foodsAll: any;
+    foodsBio: any;
+    foodsWithoutAllergens: any;
 
     foodsList: any;
 
@@ -120,7 +119,4 @@ export class ProductViewComponent implements OnInit {
         this.foodBoolAll = false;
         this.foodBoolBio = false;
     }
-
-
-
 }

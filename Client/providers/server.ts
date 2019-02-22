@@ -31,11 +31,11 @@ export class Server {
     }
 
 
-    getComments(id) : Observable<any>{
+    getComments(id): Observable<any> {
         return this.http.get(this.path + '/getComments/' + id)
     }
 
-    getRecipe(id) : Observable<any>{
+    getRecipe(id): Observable<any> {
         return this.http.get(this.path + '/getRecipe/' + id)
     }
 
@@ -84,11 +84,11 @@ export class Server {
         return req;
     }
 
-    getAllRecipes() : Observable<any>{
+    getAllRecipes(): Observable<any> {
         return this.http.get(this.path + '/getAllRecipes')
     }
 
-    getAllPrices() : Observable<any>{
+    getAllPrices(): Observable<any> {
         return this.http.get(this.path + '/getAllPrices')
     }
 

@@ -89,17 +89,19 @@ img {
   width: 100%;
 }
 
+/*
 .cards {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
   padding: 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .cards__item {
   display: flex;
-  padding: 1rem;
+  padding: 1em;
   @media(min-width: 40rem) {
     width: 50%;
   }
@@ -170,16 +172,11 @@ img {
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
+*/
 
 .custom-control {
   margin-left: auto;
   margin-right: auto;
   padding-top: 3%;
   font-size: 1.25em;
-}
-
-.ngxPage {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {BsModalRef} from "ngx-bootstrap";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {Server} from "../../../../providers/server";
+import {ModalComponent} from "../../shared/modal/modal.component";
+
 
 @Component({
     selector: 'app-recipe-modal',
@@ -13,7 +15,7 @@ export class RecipeModalComponent implements OnInit {
     comments;
     productDetails;
 
-    constructor(public modalRef: BsModalRef, public server: Server) {
+    constructor(public modalRef: BsModalRef, private modalService: BsModalService, public server: Server) {
 
     }
 
@@ -26,7 +28,14 @@ export class RecipeModalComponent implements OnInit {
     }
 
     openDetails(product) {
-        this.productDetails = JSON.parse(this.server.getProduct(product.id).responseText).result;
+        this.productDetails = JSON.parse(this.server.getProduct(product.id).responseText);
+        console.log(this.productDetails.result)
+        this.modalRef = this.modalService.show(ModalComponent, {
+            initialState: {
+                title: this.productDetails.result,
+                data: {}
+            }
+        });
     }
 
     sendComment(pseudo, comment) {

@@ -1,3 +1,41 @@
+.card {
+  flex: 0 0 200px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  height: 450px;
+}
+
+.card img {
+  object-fit: contain;
+  width: 200px;
+  height: 300px;
+}
+
+.card .text {
+  padding: 0 10px 10px;
+  text-align: center;
+  color: dimgray;
+  height: 150px;
+}
+
+.card .btnCard {
+  position: relative;
+  width: auto;
+  height: auto;
+  background-color: burlywood;
+  //border: 1px solid lightgray;
+  //border-radius: 1rem;
+  color: darkgray;
+  padding: 0.5rem;
+  //text-transform: lowercase;
+  text-align: center;
+
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+}
+
+/*
 *,
 *::before,
 *::after {
@@ -103,3 +141,4 @@ img {
   margin-bottom: 1.25rem;
 }
 
+*/

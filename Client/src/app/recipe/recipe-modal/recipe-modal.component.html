@@ -1,33 +1,33 @@
-  <div class="modal-header">
+<div class="modal-header">
     <h4 class="modal-title pull-left"> Recette : {{ title.name}} </h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
+</div>
+<div class="modal-body">
     <h4>Ingrédients :</h4>
-      <li *ngFor="let ing of title.ingredients">
+    <li *ngFor="let ing of title.ingredients">
         <button mat-raised-button (click)="openDetails(ing)">{{ing.name}}</button>
-      </li>
+    </li>
     <h4>Commentaires :</h4>
-      <li *ngFor="let com of comments">
-          <p>{{com.pseudoUser}}</p>
-          <p>{{com.content}}</p>
-      </li>
-  </div>
+    <li *ngFor="let com of comments">
+        <p>{{com.pseudoUser}}</p>
+        <p>{{com.content}}</p>
+    </li>
+</div>
 
 
-  <div class="modal-footer">
-      <form>
-          <mat-form-field>
-              <mat-label>Pseudo</mat-label>
-              <input matInput #pseudo>
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label>Commentaire</mat-label>
-              <input matInput #comment>
-          </mat-form-field>
-          <button mat-raised-button (click)="sendComment(pseudo, comment)">Envoyer</button>
-      </form>
-  </div>
+<div class="modal-footer">
+    <form>
+        <mat-form-field>
+            <mat-label>Pseudo</mat-label>
+            <input matInput #pseudo>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Commentaire</mat-label>
+            <input matInput #comment>
+        </mat-form-field>
+        <button mat-raised-button (click)="sendComment(pseudo, comment)">Envoyer</button>
+    </form>
+</div>
 

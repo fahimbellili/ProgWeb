@@ -22,7 +22,7 @@ import {RecipeCardComponent} from "./recipe/recipe-card/recipe-card.component";
 import {RecipeModalComponent} from "./recipe/recipe-modal/recipe-modal.component";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgxSpinnerComponent, NgxSpinnerModule} from "ngx-spinner";
-import {MatCheckboxModule, MatGridListModule, MatCardModule} from "@angular/material";
+import {MatCheckboxModule, MatGridListModule, MatCardModule, MatSnackBarModule} from "@angular/material";
 import {AddRecipeViewComponent} from "./recipe/add-recipe-view/add-recipe-view.component";
 import {SelectRecipeCardComponent} from "./recipe/select-recipe-card/select-recipe-card.component";
 import {RecipeItemsService} from "../../providers/recipe-items.service";
@@ -58,6 +58,7 @@ const appRoutes: Routes = [
         FormsModule,
         MatGridListModule,
         MatCardModule,
+        MatSnackBarModule,
         MatCheckboxModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes),

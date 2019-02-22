@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalRef, BsModalService} from "ngx-bootstrap";
 import {Server} from "../../../../providers/server";
 import {ModalComponent} from "../../shared/modal/modal.component";
+import {MatSnackBar} from "@angular/material";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class RecipeModalComponent implements OnInit {
     comments;
     productDetails;
 
-    constructor(public modalRef: BsModalRef, private modalService: BsModalService, public server: Server) {
+    constructor(public modalRef: BsModalRef, private snackBar: MatSnackBar, private modalService: BsModalService, public server: Server) {
 
     }
 
@@ -57,7 +58,19 @@ export class RecipeModalComponent implements OnInit {
             });
             const content = await response.json();
         })();
+        this.closeModal();
+        this.openSnackBar();
+
 
     }
 
+    closeModal() {
+        this.modalRef.hide();
+    }
+
+    openSnackBar() {
+        this.snackBar.open("Merci pour votre commentaire!", "OK", {
+            duration: 2000,
+        });
+    }
 }

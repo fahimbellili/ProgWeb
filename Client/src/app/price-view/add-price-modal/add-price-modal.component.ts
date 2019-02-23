@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {BsModalRef} from "ngx-bootstrap";
 
 @Component({
     selector: 'app-add-price-modal',
@@ -9,7 +10,7 @@ export class AddPriceModalComponent implements OnInit {
 
     @Input() data: string;
 
-    constructor() {
+    constructor(public modalRef: BsModalRef) {
     }
 
     ngOnInit() {

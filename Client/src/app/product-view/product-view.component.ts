@@ -10,7 +10,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class ProductViewComponent implements OnInit {
 
-    foodsAll: any;
+    foodsAll;
+    foodsSearch: any[] = [];
     foodsBio: any;
     foodsWithoutAllergens: any;
 
@@ -19,6 +20,7 @@ export class ProductViewComponent implements OnInit {
     foodBoolAll = false;
     foodBoolBio = false;
     foodBoolAllerg = false;
+    foodBoolSearch = false;
     foodsAllCheck = false;
     foodsBioCheck = false;
     foodsAllergCheck = false;
@@ -42,7 +44,23 @@ export class ProductViewComponent implements OnInit {
         this.foodsAllCheck = true;
     }
 
-    onEnterKey(event: any) {
+    onEnterKey(event: any, searchbar) {
+        this.foodBoolAll=false;
+        this.foodBoolSearch=true;
+        try {
+            for (let entry of this.foodsAll.result) {
+                var string = entry.name.toLowerCase(),
+                    substring = searchbar.value.toLowerCase();
+                var index = string.indexOf(substring);
+                if (index != -1) {
+                    console.log(entry)
+                    this.foodsSearch.push(entry)
+                    console.log(this.foodsSearch)
+                }
+            }
+        }
+        catch (e) {
+        }
 
     }
 

@@ -2,14 +2,14 @@
   <h4 class="modal-title pull-left"> {{productName}} </h4>
 </div>
 <div class="modal-body">
-  <p>{{idProduct}}</p>
-  <div class="row">
+  <p>Numéro du produit : <b>{{idProduct}}</b></p>
+
     <form #createPrice = "ngForm" (ngSubmit) = "onClickSubmit(idProduct, productName, createPrice.value)" >
-      <input type = "text" name = "price" placeholder = "Prix" ngModel>
-      <br/>
-      <input type = "text" name = "shop" placeholder = "Magasin concerné" ngModel>
-      <br/>
-      <input type = "submit" value = "Valider">
+      <input type = "text" name = "price" placeholder = " Prix" ngModel>
+      <br><br>
+      <input type = "text" name = "shop" placeholder = " Magasin concerné" ngModel>
+      <br><br>
+      <input  class="button4" type = "submit" value = "Valider">
     </form>
-  </div>
+
 </div>

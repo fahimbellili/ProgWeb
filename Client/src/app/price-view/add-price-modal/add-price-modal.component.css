@@ -1,0 +1,29 @@
+
+/* ng-model state classes */
+form input.ng-pristine,
+form .ng-pristine.wj-control {
+    float: left;
+    width: auto;
+    background-color: #f4f4f4;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.ng-valid {
+    border-color: lightgreen;
+}
+.ng-invalid {
+    border-color: red;
+}
+
+.button4 {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+    border-radius: 5;
+    width: 100px;
+}
+
+.button4:hover {background-color: #e7e7e7;}

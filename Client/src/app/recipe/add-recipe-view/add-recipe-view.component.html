@@ -5,15 +5,22 @@
     <!-- Default unchecked -->
     <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="check_01">
-        <label class="custom-control-label" for="check_01">Aliments Bio</label>
+        <label class="custom-control-label" for="check_01">Tous les aliments</label>
     </div>
 
     <!-- Default unchecked -->
     <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="check_02">
-        <label class="custom-control-label" for="check_02">Aliments sans allergène</label>
+        <label class="custom-control-label" for="check_02">Aliments Bio</label>
+    </div>
+
+    <!-- Default unchecked -->
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_03">
+        <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
     </div>
 </div>
+<!--
 
 <div id="list">
     <form>
@@ -33,23 +40,82 @@
         </mat-card>
         <br>
     </div>
-    <button *ngIf="recipeItems.length==0 || name.value==''" [disabled]="true" mat-raised-button (click)="addRecipe(name)">Ajouter la recette</button>
-    <button *ngIf="recipeItems.length!=0 && name.value!=''" [disabled]="false" mat-raised-button (click)="addRecipe(name)">Ajouter la recette</button>
+    <button *ngIf="recipeItems.length==0 || name.value==''" [disabled]="true" mat-raised-button
+            (click)="addRecipe(name)">Ajouter la recette
+    </button>
+    <button *ngIf="recipeItems.length!=0 && name.value!=''" [disabled]="false" mat-raised-button
+            (click)="addRecipe(name)">Ajouter la recette
+    </button>
 </div>
 
 <div class="container">
-    <ul class="cards">
-        <li class="cards__item" *ngFor="let food of foods?.result | paginate: { itemsPerPage: 9, currentPage: p }">
-            <app-select-recipe-card [food]="food"></app-select-recipe-card>
-        </li>
-    </ul>
+    <main class="cards">
+        <app-select-recipe-card
+                *ngFor="let food of foods?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [food]="food">
+        </app-select-recipe-card>
+    </main>
+
+</div>
+<div class="ngxPagination">
     <pagination-controls class="ngxPage"
                          (pageChange)="p = $event"
-                         previousLabel="Précédent"
+                         previousLabel="Précèdent"
                          nextLabel="Suivant"
                          maxSize="9"
                          directionLinks="true"
                          autoHide="true"
                          responsive="true">
     </pagination-controls>
+</div>
+-->
+<div class="wrap">
+    <div class="left">
+        <div id="list">
+            <form id="formBtn">
+                <input class='inputBtn' placeholder="Entrer le nom de la recette" #name>
+                <button *ngIf="recipeItems.length==0 || name.value==''" [disabled]="true" mat-raised-button
+                        (click)="addRecipe(name)">Ajouter la recette
+                </button>
+                <button *ngIf="recipeItems.length!=0 && name.value!=''" [disabled]="false" mat-raised-button
+                        (click)="addRecipe(name)">Ajouter la recette
+                </button>
+            </form>
+            <br>
+            <h4 style="margin-left: 1%">Ingrédients de la recette :</h4>
+            <div *ngFor="let recipeItem of recipeItems; let i = index">
+                <mat-card>{{recipeItem.name}}
+                    <mat-card-actions>
+                        <button mat-icon-button color="warn" (click)="deleteItem(i)">
+                            <mat-icon aria-label="delete button">delete</mat-icon>
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="right">
+        <div>
+            <main class="cards">
+                <app-select-recipe-card
+                        *ngFor="let food of foods?.result | paginate: { itemsPerPage: 6, currentPage: p }"
+                        [food]="food">
+                </app-select-recipe-card>
+            </main>
+
+        </div>
+        <div class="ngxPagination">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="9"
+                                 directionLinks="true"
+                                 autoHide="true"
+                                 responsive="true">
+            </pagination-controls>
+
+        </div>
+    </div>
 </div>

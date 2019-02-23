@@ -10,8 +10,6 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class ProductViewComponent implements OnInit {
 
-    check_02;
-
     foodsAll;
     foodsSearch: any[] = [];
     foodsBio: any;

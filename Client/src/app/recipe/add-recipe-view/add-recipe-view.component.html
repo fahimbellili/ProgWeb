@@ -1,19 +1,22 @@
 <div class='app row'>
-    <input class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
-           (keydown.enter)="onEnterKey($event)">
+    <input #searchbar class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
+           (keydown.enter)="onEnterKey($event, searchbar)">
 
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_01">
+        <input type="checkbox" class="custom-control-input" id="check_01" (change)="getAllProducts($event)"
+               [checked]="foodsAllCheck">
         <label class="custom-control-label" for="check_01">Tous les aliments</label>
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_02">
+        <input type="checkbox" class="custom-control-input" id="check_02" (change)="getBioProducts($event)"
+               [checked]="foodsBioCheck">
         <label class="custom-control-label" for="check_02">Aliments Bio</label>
     </div>
 
     <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="check_03">
+        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getWithoutAllergensProduct($event)"
+               [checked]="foodsAllergCheck">
         <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
     </div>
 </div>
@@ -94,9 +97,33 @@
     </div>
     <div class="right">
         <div>
-            <main class="cards">
+            <main class="cards" *ngIf="foodBoolAll">
                 <app-select-recipe-card
-                        *ngFor="let food of foods?.result | paginate: { itemsPerPage: 6, currentPage: p }"
+                        *ngFor="let food of foodsAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                        [food]="food">
+
+                </app-select-recipe-card>
+            </main>
+
+            <main class="cards" *ngIf="foodBoolBio">
+                <app-select-recipe-card
+                        *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                        [food]="food">
+
+                </app-select-recipe-card>
+            </main>
+
+            <main class="cards" *ngIf="foodBoolAllerg">
+                <app-select-recipe-card
+                        *ngFor="let food of foodsWithoutAllergens?.result | paginate: { itemsPerPage: 6, currentPage: p }"
+                        [food]="food">
+
+                </app-select-recipe-card>
+            </main>
+
+            <main class="cards" *ngIf="foodBoolSearch">
+                <app-select-recipe-card
+                        *ngFor="let food of foodsSearch | paginate: { itemsPerPage: 6, currentPage: p }"
                         [food]="food">
                 </app-select-recipe-card>
             </main>

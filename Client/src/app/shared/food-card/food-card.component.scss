@@ -8,9 +8,11 @@
 }
 
 .card img {
-  object-fit: contain;
+  //object-fit: contain;
   width: 200px;
   height: 300px;
+  overflow: hidden;
+  background-size: cover;
 }
 
 .card .text {

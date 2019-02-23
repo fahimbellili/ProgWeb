@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import * as L from 'leaflet';
 import {Server} from "../../../providers/server";

@@ -103,6 +103,14 @@ export class Server {
         return this.http.get(this.path + '/getAllRecipes');
     }
 
+    getRecipesBio(): Observable<any> {
+        return this.http.get(this.path + '/getRecipeBio');
+    }
+
+    getRecipesWithoutAllergens(): Observable<any> {
+        return this.http.get(this.path + '/getRecipeWithoutAllergens');
+    }
+
     getAllPrices(): Observable<any> {
         return this.http.get(this.path + '/getAllPrices');
     }

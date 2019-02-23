@@ -1,26 +1,65 @@
 <div class='app row'>
-    <input class='search-box' placeholder="Taper le nom d'une recette et appuyer sur Entrée..."
-           (keydown.enter)="onEnterKey($event)">
+    <input #searchbar class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
+           (keydown.enter)="onEnterKey($event, searchbar)">
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_01" (change)="getAllProducts($event)"
+               [checked]="recipesAllCheck">
+        <label class="custom-control-label" for="check_01">Tous les aliments</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_02" (change)="getBioProducts($event)"
+               [checked]="recipesBioCheck">
+        <label class="custom-control-label" for="check_02">Aliments Bio</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getWithoutAllergensProduct($event)"
+               [checked]="recipesAllergCheck">
+        <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
+    </div>
 </div>
 
 <!--<div class="container">-->
-    <!--<ul class="cards">-->
-        <!--<li class="cards__item" *ngFor="let recipe of recipes?.result">-->
-            <!--<app-recipe-card [recipe]="recipe"></app-recipe-card>-->
-        <!--</li>-->
-    <!--</ul>-->
+<!--<ul class="cards">-->
+<!--<li class="cards__item" *ngFor="let recipe of recipes?.result">-->
+<!--<app-recipe-card [recipe]="recipe"></app-recipe-card>-->
+<!--</li>-->
+<!--</ul>-->
 <!--</div>-->
 
 
 <div class="container">
-    <main class="cards">
-
+    <main class="cards" *ngIf="recipeBoolAll">
         <app-recipe-card
-                *ngFor="let recipe of recipes?.result"
+                *ngFor="let recipe of recipesAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [recipe]="recipe">
+        </app-recipe-card>
+    </main>
+
+    <main class="cards" *ngIf="recipeBoolBio">
+        <app-recipe-card
+                *ngFor="let recipe of recipesBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
                 [recipe]="recipe">
 
         </app-recipe-card>
+    </main>
 
+    <main class="cards" *ngIf="recipeBoolAllerg">
+        <app-recipe-card
+                *ngFor="let recipe of recipesWithoutAllergens?.result | paginate: { itemsPerPage: 10, currentPage: p }"
+                [recipe]="recipe">
+
+        </app-recipe-card>
+    </main>
+
+    <main class="cards" *ngIf="recipeBoolSearch">
+        <app-recipe-card
+                *ngFor="let recipe of recipesSearch | paginate: { itemsPerPage: 10, currentPage: p }"
+                [recipe]="recipe">
+
+        </app-recipe-card>
     </main>
 </div>
 

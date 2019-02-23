@@ -1,50 +1,51 @@
 #foodymap {
-    margin-top: 5%;
-    margin-right: 5%;
-    height: 500px;
-    width: 80%
+  margin-top: 5%;
+  height: 600px;
+  width: 100%;
+  box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, 0.3);;
 }
 
 div#list {
-    //float:right;
-    width:34%;
-    margin-right: 1%;
-    margin-left: 1%;
-    height:600px;
+  //float:right
+  width: 34%;
+  margin-right: 1%;
+  margin-left: 1%;
+  height: 600px;
 }
 
 .wrap {
-    display: flex;
+  display: flex;
 }
 
 .left {
-    //background: red;
-    flex-basis: 30%;
+  //background: red;
+  flex-basis: 30%;
 }
 
 .right {
-    //background: green;
-    flex-basis: 70%;
+  //background: green;
+  flex-basis: 70%;
 
-    //height: 100vh;
-    //overflow: auto;
+  //height: 100vh;
+  //overflow: auto;
 }
+
 .cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .ngxPagination /deep/ .ngx-pagination .current {
-    background: transparent;
-    font-size: 24px;
-    border-bottom: 3px solid red;
-    color: black;
+  background: transparent;
+  font-size: 24px;
+  border-bottom: 3px solid red;
+  color: black;
 }
 
-.ngxPagination /deep/ .ngx-pagination  {
-    position: relative;
-    top: 20px;
-    left: 30%;
-    font-size: 20px;
+.ngxPagination /deep/ .ngx-pagination {
+  position: relative;
+  top: 20px;
+  left: 30%;
+  font-size: 20px;
 }

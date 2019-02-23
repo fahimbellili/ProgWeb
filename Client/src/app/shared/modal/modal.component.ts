@@ -10,11 +10,17 @@ import {Server} from '../../../../providers/server';
 export class ModalComponent implements OnInit {
 
     title;
+    score: any;
 
     constructor(public modalRef: BsModalRef, private server: Server) {
     }
 
     ngOnInit() {
+        this.server.getAllScore(this.title[0]._id).subscribe(data => {
+            console.log(data.result[0].score);
+            this.score = data.result[0].score;
+
+        });
     }
 
 }

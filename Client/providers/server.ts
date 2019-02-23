@@ -16,6 +16,11 @@ export class Server {
         return this.path;
     }
 
+    /* cette méthode est la même que  getScore si dessous */
+    getAllScore(idProduct): Observable<any> {
+        return this.http.get(this.path + '/getScore/' + idProduct);
+    }
+
     getScore(idProduct) {
         let req = new XMLHttpRequest();
         req.open('GET', this.getAllPath() + ('/getScore' + ('/') + (idProduct)), false);

@@ -88,7 +88,7 @@ img {
   display: block;
   width: 100%;
 }
-
+/*
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -170,7 +170,7 @@ img {
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
-
+*/
 .custom-control {
   margin-left: auto;
   margin-right: auto;
@@ -178,15 +178,62 @@ img {
   font-size: 1.25em;
 }
 
-.ngxPage {
+/*.ngxPage {
   position: relative;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 
 div#list {
-  float:right;
-  width:150px;
-  margin-right: 1%;
-  height:100%;
+  //float:right;
+  //width:150px;
+  left: 50px;
+  //height:100%;
+}
+
+.inputBtn {
+  position: relative;
+  margin-left: 1%;
+  margin-right: 5px;
+  font-size: 18px;
+  padding: 0.3em 0.75em;
+  width: 60%;
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.ngxPagination /deep/ .ngx-pagination .current {
+  background: transparent;
+  font-size: 24px;
+  border-bottom: 3px solid red;
+  color: black;
+}
+
+.ngxPagination /deep/ .ngx-pagination  {
+  position: relative;
+  top: 20px;
+  left: 30%;
+  font-size: 20px;
+}
+
+.wrap {
+  display: flex;
+}
+
+.left {
+  //background: darkseagreen;
+  flex-basis: 25%;
+}
+
+.right {
+  //background: green;
+  flex-basis: 75%;
+
 }

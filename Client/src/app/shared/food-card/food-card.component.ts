@@ -22,14 +22,16 @@ export class FoodCardComponent implements OnInit {
     }
 
     openModal() {
-        this.resultReq = JSON.parse(this.server.getProduct(this.food.id).responseText);
-        console.log(this.resultReq.result);
+        this.server.getAllProductId(this.food.id).subscribe(data => {
 
-        this.modalRef = this.modalService.show(ModalComponent, {
-            initialState: {
-                title: this.resultReq.result,
-                data: {}
-            }
+            this.resultReq = data;
+            this.modalRef = this.modalService.show(ModalComponent, {
+                initialState: {
+                    title: this.resultReq.result,
+                    data: {}
+                }
+            });
+
         });
 
 

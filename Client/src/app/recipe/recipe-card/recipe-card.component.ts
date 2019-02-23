@@ -1,39 +1,39 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {Server} from "../../../../providers/server";
-import {RecipeModalComponent} from "../recipe-modal/recipe-modal.component";
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Server} from '../../../../providers/server';
+import {RecipeModalComponent} from '../recipe-modal/recipe-modal.component';
 
 @Component({
-  selector: 'app-recipe-card',
-  templateUrl: './recipe-card.component.html',
-  styleUrls: ['./recipe-card.component.scss']
+    selector: 'app-recipe-card',
+    templateUrl: './recipe-card.component.html',
+    styleUrls: ['./recipe-card.component.scss']
 })
 export class RecipeCardComponent implements OnInit {
 
-  modalRef: BsModalRef;
-  @Input() recipe: any;
-  resultReq: any;
+    modalRef: BsModalRef;
+    @Input() recipe: any;
+    resultReq: any;
 
-  constructor(private modalService: BsModalService, public server: Server) {
-  }
+    constructor(private modalService: BsModalService, public server: Server) {
+    }
 
 
-  openModal() {
-    this.server.getRecipe(this.recipe.id).subscribe(
-        data => {
-          this.resultReq = data;
-          this.modalRef = this.modalService.show(RecipeModalComponent, {
-            class: 'modal-lg',
-            initialState: {
-              title: this.resultReq.result[0],
-              data: {}
-            },
-          });
-        }
-    );
-  }
+    openModal() {
+        this.server.getRecipe(this.recipe.id).subscribe(
+            data => {
+                this.resultReq = data;
+                this.modalRef = this.modalService.show(RecipeModalComponent, {
+                    class: 'modal-lg',
+                    initialState: {
+                        title: this.resultReq.result[0],
+                        data: {}
+                    },
+                });
+            }
+        );
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

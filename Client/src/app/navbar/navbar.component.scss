@@ -1,12 +1,13 @@
 @import url(http://fr.allfont.net/allfont.css?fonts=comic-sans-ms);
 
-.navbarCl {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.navbar {
   background-color: darkcyan;
+  color: black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .nav-link {
-  color: antiquewhite;
+  //color: antiquewhite;
   font-size: 20px;
 }
 
@@ -15,10 +16,13 @@
 }*/
 
 .navbar-left {
-  width: 200px;
+  width: 25%;
 }
 
 ul li.active a {
   color: darkorange;
+}
 
+.navbar .navbar-toggler > button {
+  color: darkorange;
 }

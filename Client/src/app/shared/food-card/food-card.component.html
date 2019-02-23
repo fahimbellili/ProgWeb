@@ -13,7 +13,14 @@
         <!--p>Collaboratively administrate empowered markets via plug-and-play networks.</p-->
     </div>
     <div class="btnCard">
-        <button (click)="openModal()" class="btn btn--block card__btn">Voir plus de détails</button>
+        <button (click)="openModal()" class="btn btn-default btn-sm" title="Afficher plus de détails">
+            <i class="fa fa-info-circle fa-2x"></i>
+        </button>
+
+        <button (click)="openModalAddPrince(food)" class="btn btn-default btn-sm" title="Ajouter un prix au produit">
+            <i class="fa fa-euro fa-2x"></i>
+        </button>
+
     </div>
 </article>
 

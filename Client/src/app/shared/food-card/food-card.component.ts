@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ModalComponent} from '../modal/modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Server} from '../../../../providers/server';
+import {AddPriceModalComponent} from "../../price-view/add-price-modal/add-price-modal.component";
 
 @Component({
     selector: 'app-food-card',
@@ -31,10 +32,17 @@ export class FoodCardComponent implements OnInit {
                     data: {}
                 }
             });
-
         });
+    }
 
-
+    openModalAddPrince(food) {
+        this.modalRef = this.modalService.show(AddPriceModalComponent, {
+            initialState: {
+                title: 'Modal title',
+                idProduct: food.id,
+                productName: food.name
+            }
+        });
     }
 
     getImgUrl() {
@@ -51,6 +59,4 @@ export class FoodCardComponent implements OnInit {
         }
         return url;
     }
-
-
 }

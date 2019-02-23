@@ -10,6 +10,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 })
 export class ProductViewComponent implements OnInit {
 
+    check_02;
+
     foodsAll;
     foodsSearch: any[] = [];
     foodsBio: any;
@@ -45,10 +47,26 @@ export class ProductViewComponent implements OnInit {
     }
 
     onEnterKey(event: any, searchbar) {
-        this.foodBoolAll=false;
-        this.foodBoolSearch=true;
+        let listToParse;
+        this.foodsSearch=[];
+        if (this.foodsBioCheck){
+            listToParse=this.foodsBio;
+            this.foodBoolBio=false;
+            this.foodBoolSearch=true;
+        }
+        if (this.foodsAllergCheck){
+            listToParse=this.foodsWithoutAllergens;
+            this.foodBoolAllerg=false;
+            this.foodBoolSearch=true;
+        }
+        if(this.foodsAllCheck){
+            listToParse=this.foodsAll;
+            this.foodBoolAll=false;
+            this.foodBoolSearch=true;
+            console.log("here")
+        }
         try {
-            for (let entry of this.foodsAll.result) {
+            for (let entry of listToParse.result) {
                 var string = entry.name.toLowerCase(),
                     substring = searchbar.value.toLowerCase();
                 var index = string.indexOf(substring);

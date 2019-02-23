@@ -10,6 +10,7 @@ export class Server {
 
     constructor(private http: HttpClient) {
         this.path = 'https://offserver2019.herokuapp.com';
+        //this.path = 'http://localhost:8080';
     }
 
     getAllPath() {
@@ -85,6 +86,10 @@ export class Server {
         req.send(null);
         return req;
     }
+
+    // getAllAlimentsBioAndWithoutAllergens(): Observable<any> {
+    //     return this.http.get(this.path + '/getAlimentsBioAndWithoutAllergen');
+    // }
 
     //getPrice/idRecipe/
     getPrice(idRecipe) {

@@ -70,10 +70,7 @@ async function initAliments() {
             if (err) throw err;
             db = mongoClient.db(dbName);
             const collection = db.collection(collFood);
-            let query = {
-                "allergens_tags": []
-            };
-            collection.find(query)
+            collection.find({"allergens_tags": []})
                 .toArray(function (err, docs) {
                     alimentsWithoutAllergens = _.sortBy(
                         docs
@@ -96,7 +93,6 @@ async function initAliments() {
             if (err) throw err;
             db = mongoClient.db(dbName);
             const collection = db.collection(collFood);
-
             collection.find({"product_name": /.*BIO.*/i})
                 .toArray(function (err, docs) {
                     alimentsBio = _.sortBy(
@@ -115,6 +111,33 @@ async function initAliments() {
                 });
         }
     );
+
+    // MongoClient.connect(url, function (err, db) {
+    //         if (err) throw err;
+    //         db = mongoClient.db(dbName);
+    //         const collection = db.collection(collFood);
+    //         collection.find({
+    //             $and: [
+    //                 {"product_name": /.*BIO.*/i},
+    //                 {"allergens_tags": []},
+    //             ]
+    //         }).toArray(function (err, docs) {
+    //             alimentsBioAndWithoutAllergen = _.sortBy(
+    //                 docs
+    //                     .map(doc => {
+    //                         return {
+    //                             id: doc._id,
+    //                             name: doc.product_name,
+    //                             images: doc.images
+    //                         };
+    //                     })
+    //                     .filter(x => {
+    //                         return x != null;
+    //                     }),
+    //             );
+    //         });
+    //     }
+    // );
 
     MongoClient.connect(url, function (err, db) {
             if (err) throw err;
@@ -182,6 +205,12 @@ app.get("/getAlimentsBio", async function (req, res, next) {
         result: alimentsBio
     })
 });
+
+// app.get("/getAlimentsBioAndWithoutAllergen", async function (req, res, next) {
+//     res.send({
+//         result:
+//     })
+// });
 
 app.get("/getProduct/:id", async function (req, res, next) {
     const id = req.params.id;

@@ -1,6 +1,17 @@
-<div class="card">
+<!--<div class="card">
   <div class="card__content">
     <div class="card__title" style="text-align: center;">{{food.name}}</div>
-    <button (click)="openModal(food)" class="btn btn--block card__btn" style="text-align: center; font-weight: bold;">Ajouter un prix</button>
+    <button (click)="openModal(food)" class="btn btn&#45;&#45;block card__btn" style="text-align: center; font-weight: bold;">Ajouter un prix</button>
   </div>
-</div>
+</div>-->
+
+<article class="card">
+  <img [src]="getImgUrl()" alt="Sample photo">
+  <div class="text">
+    <h4>{{food.name}}</h4>
+    <!--p>Collaboratively administrate empowered markets via plug-and-play networks.</p-->
+  </div>
+  <div class="btnCard">
+    <button (click)="openModal(food)" class="btn btn--block card__btn">Ajouter un prix</button>
+  </div>
+</article>

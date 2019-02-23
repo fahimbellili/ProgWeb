@@ -22,19 +22,20 @@
   height: 150px;
 }
 
-.card .btnCard {
-  position: relative;
-  width: auto;
-  height: auto;
-  background-color: burlywood;
+.card .btnCard > button {
+  //position: relative;
+  float: right;
+  //justify-content: space-between;
+/*  width: 100px;
+  height: 100px;*/
+  //background-color: burlywood;
   //border: 1px solid lightgray;
   //border-radius: 1rem;
-  color: darkgray;
-  padding: 0.5rem;
+  //color: darkgray;
+  //padding: 0.5rem;
   //text-transform: lowercase;
-  text-align: center;
-
-  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  //text-align: center;
+  //box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
 }
 
 /*

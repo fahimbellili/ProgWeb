@@ -2,35 +2,49 @@
 
     <!-- Modal content-->
     <div class="modal-content">
+        
         <div class="modal-header">
             <h4 class="modal-title pull-left"> {{ titre.product_name}} </h4>
             <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+
         <div class="modal-body">
-            <h4 class="modal-title pull-left" >
-                <h4 *ngFor="let ing of titre.ingredients">{{ing.text}}</h4>
-            </h4>
-        </div>
+            <div id="accordion" class="accordion">
+                <div class="card mb-0">
+                    <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
+                        <a class="card-title">
+                            Ingrédients
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
+                        <ul class="modal-title pull-left">
+                            <li *ngFor="let ing of titre.ingredients">{{ing.text}}</li>
+                        </ul>
 
-        <div class="modal-footer">
-            <h4> Score : {{score}}</h4>
-        </div>
+                    </div>
+                    <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion"
+                         href="#collapseTwo">
+                        <a class="card-title">
+                            Prix
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="card-body collapse" data-parent="#accordion">
+                        <ul class="modal-title pull-left">
+                            <div *ngFor="let prix of price?.result">
+                                <div *ngIf="prix.idOfProduct === titre._id">
+                                    <li><b>{{prix.shop}} : {{prix.price}} € </b></li>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
 
-        <div *ngFor="let prix of price?.result">
-
-            <div *ngIf="prix.idOfProduct === titre._id">
-                   Prix : {{prix.price}}
-                   Magasin : {{prix.shop}}
+                <div class="modal-footer">
+                    <h4> Score : {{score}}</h4>
+                </div>
             </div>
         </div>
-
-       <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-        </div>-->
     </div>
-
-
 </div>

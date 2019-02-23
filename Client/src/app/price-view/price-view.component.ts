@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import * as L from 'leaflet';
-import {Server} from "../../../providers/server";
+import {Server} from '../../../providers/server';
 
 @Component({
     selector: 'app-price-view',
@@ -53,7 +53,7 @@ export class PriceViewComponent implements OnInit {
         for (var i = 0; i < this.prices.length; i++) {
             var current = this.prices[i];
             var popup = L.popup();
-            var customPopup = "Magasin : " + current.shop + " / " + "Price : " + current.price;
+            var customPopup = 'Magasin : ' + current.shop + ' / ' + 'Price : ' + current.price + ' / ' + 'Produit : ' + current.nameOfProduct;
             L.marker([current.lat, current.long], {icon: monIcone}).bindPopup(customPopup).addTo(this.myFoodyMap);
         }
     }

@@ -1,12 +1,13 @@
 @import url(http://fr.allfont.net/allfont.css?fonts=comic-sans-ms);
 
-.navbarCl {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.navbar {
   background-color: darkcyan;
+  color: black;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .nav-link {
-  color: antiquewhite;
+  //color: antiquewhite;
   font-size: 20px;
 }
 
@@ -15,10 +16,40 @@
 }*/
 
 .navbar-left {
-  width: 200px;
+  width: 25%;
 }
 
 ul li.active a {
   color: darkorange;
-
 }
+
+.navbar .navbar-toggler > button {
+  color: darkorange;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+

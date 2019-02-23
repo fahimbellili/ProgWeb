@@ -22,17 +22,32 @@
                 <a class="nav-link" routerLink="product">Produits</a>
             </li>
 
-            <li class="nav-item" routerLinkActive="active">
+            <li class="nav-item dropdown" routerLinkActive="active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Recettes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="recipe" >Liste des recettes</a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" routerLink="addRecipe">Ajouter une recette</a>
+                </div>
+            </li>
+
+<!--            <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="recipe">Liste des recettes</a>
             </li>
 
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="addRecipe">Ajouter une recette</a>
-            </li>
+            </li>-->
 
             <li class="nav-item" routerLinkActive="active">
                 <a class="nav-link" routerLink="price">Magasins & Prix</a>
             </li>
+
         </ul>
     </div>
 </nav>

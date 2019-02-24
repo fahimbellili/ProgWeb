@@ -16,7 +16,7 @@ export class AddRecipeViewComponent implements OnInit {
     foodsSearch: any[] = [];
     foodsBio: any;
     foodsWithoutAllergens: any;
-
+    p;
     foodBoolAll = false;
     foodBoolBio = false;
     foodBoolAllerg = false;

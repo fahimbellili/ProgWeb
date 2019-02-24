@@ -12,11 +12,14 @@
 #### 2.1. Serveur
 * Node.js
 
-### 2.2. Client
+#### 2.2. Stockage : 
+* MongoDB
+
+#### 2.2. Client
 * Angular 6
 * Bootstrap 4
 * Material Design
 
 ### 3. Lancement du projet 
-## 3.1. Serveur
-## 3.2. Client
+#### 3.1. Serveur
+#### 3.2. Client

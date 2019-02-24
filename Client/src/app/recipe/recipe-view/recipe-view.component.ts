@@ -155,5 +155,4 @@ export class RecipeViewComponent implements OnInit {
         this.recipesAllergCheck = true;
         this.recipesBioCheck = false;
     }
-
 }

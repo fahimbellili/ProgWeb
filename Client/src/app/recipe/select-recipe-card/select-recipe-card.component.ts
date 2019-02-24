@@ -41,5 +41,4 @@ export class SelectRecipeCardComponent implements OnInit {
         }
         return url;
     }
-
 }

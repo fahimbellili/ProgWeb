@@ -15,8 +15,6 @@ export class ProductViewComponent implements OnInit {
     foodsBio: any;
     foodsWithoutAllergens: any;
 
-    foodsList: any;
-
     foodBoolAll = false;
     foodBoolBio = false;
     foodBoolAllerg = false;

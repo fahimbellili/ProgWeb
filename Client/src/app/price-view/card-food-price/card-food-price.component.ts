@@ -4,9 +4,9 @@ import {ModalComponent} from "../../shared/modal/modal.component";
 import {AddPriceModalComponent} from "../add-price-modal/add-price-modal.component";
 
 @Component({
-  selector: 'app-card-food-price',
-  templateUrl: './card-food-price.component.html',
-  styleUrls: ['./card-food-price.component.scss']
+    selector: 'app-card-food-price',
+    templateUrl: './card-food-price.component.html',
+    styleUrls: ['./card-food-price.component.scss']
 })
 export class CardFoodPriceComponent implements OnInit {
     @Input() food: any;
@@ -14,10 +14,11 @@ export class CardFoodPriceComponent implements OnInit {
     resultReq: any;
     defaultUrl = 'https://static.thenounproject.com/png/220984-200.png';
 
-    constructor(private modalService: BsModalService) { }
+    constructor(private modalService: BsModalService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
     openModal(food) {
         this.modalRef = this.modalService.show(AddPriceModalComponent, {

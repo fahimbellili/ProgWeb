@@ -23,6 +23,7 @@ export class RecipeViewComponent implements OnInit {
     recipesAllCheck = false;
     recipesBioCheck = false;
     recipesAllergCheck = false;
+    isLoading = false;
 
     constructor(public server: Server,
                 private http: HttpClient) {
@@ -33,6 +34,7 @@ export class RecipeViewComponent implements OnInit {
         this.server.getAllRecipes().subscribe(
             data => {
                 this.recipesAll = data;
+                this.isLoading = true;
             }
         );
         this.recipeBoolAll = true;
@@ -157,3 +159,5 @@ export class RecipeViewComponent implements OnInit {
         this.recipesBioCheck = false;
     }
 }
+
+

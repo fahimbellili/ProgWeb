@@ -44,6 +44,7 @@ export class RecipeViewComponent implements OnInit {
 
     onEnterKey(event: any, searchbar) {
         if (searchbar.value == "") {
+            this.recipesSearch = [];
             this.server.getAllRecipes()
                 .subscribe(data => {
                         this.recipesAll = data;

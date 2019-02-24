@@ -49,6 +49,7 @@ export class ProductViewComponent implements OnInit {
 
     onEnterKey(event: any, searchbar) {
         if (searchbar.value == '') {
+            this.foodsSearch = []
             this.server.getAllProducts()
                 .subscribe(data => {
                         this.foodsAll = data;

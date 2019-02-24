@@ -8,7 +8,6 @@ import {HttpClient} from "@angular/common/http";
     styleUrls: ['./recipe-view.component.scss']
 })
 export class RecipeViewComponent implements OnInit {
-
     recipesAll;
     recipesSearch: any[] = [];
     recipesBio: any;
@@ -41,38 +40,50 @@ export class RecipeViewComponent implements OnInit {
 
 
     onEnterKey(event: any, searchbar) {
-        let listToParse;
-        this.recipesSearch = [];
-        if (this.recipesBioCheck) {
-            listToParse = this.recipesBio;
-            this.recipeBoolBio = false;
-            this.recipeBoolSearch = true;
-        }
-        if (this.recipesAllergCheck) {
-            listToParse = this.recipesWithoutAllergens;
-            this.recipeBoolAllerg = false;
-            this.recipeBoolSearch = true;
-        }
-        if (this.recipesAllCheck) {
-            listToParse = this.recipesAll;
-            this.recipeBoolAll = false;
-            this.recipeBoolSearch = true;
-            console.log("here")
-        }
-        try {
-            for (let entry of listToParse.result) {
-                var string = entry.name.toLowerCase(),
-                    substring = searchbar.value.toLowerCase();
-                var index = string.indexOf(substring);
-                if (index != -1) {
-                    console.log(entry)
-                    this.recipesSearch.push(entry)
-                    console.log(this.recipesSearch)
-                }
+        if (searchbar.value == "") {
+            this.server.getAllRecipes()
+                .subscribe(data => {
+                        this.recipesAll = data;
+                        // this.foodsList = data;
+                    }, err => {
+                        console.log(err);
+                    }
+                );
+            this.recipeBoolAll = true;
+            this.recipesAllCheck = true;
+        } else {
+            let listToParse;
+            this.recipesSearch = [];
+            if (this.recipesBioCheck) {
+                listToParse = this.recipesBio;
+                this.recipeBoolBio = false;
+                this.recipeBoolSearch = true;
             }
-        } catch (e) {
+            if (this.recipesAllergCheck) {
+                listToParse = this.recipesWithoutAllergens;
+                this.recipeBoolAllerg = false;
+                this.recipeBoolSearch = true;
+            }
+            if (this.recipesAllCheck) {
+                listToParse = this.recipesAll;
+                this.recipeBoolAll = false;
+                this.recipeBoolSearch = true;
+                console.log("here")
+            }
+            try {
+                for (let entry of listToParse.result) {
+                    var string = entry.name.toLowerCase(),
+                        substring = searchbar.value.toLowerCase();
+                    var index = string.indexOf(substring);
+                    if (index != -1) {
+                        console.log(entry)
+                        this.recipesSearch.push(entry)
+                        console.log(this.recipesSearch)
+                    }
+                }
+            } catch (e) {
+            }
         }
-
     }
 
     getAllProducts(e) {

@@ -45,37 +45,45 @@ export class ProductViewComponent implements OnInit {
     }
 
     onEnterKey(event: any, searchbar) {
-        let listToParse;
-        this.foodsSearch=[];
-        if (this.foodsBioCheck){
-            listToParse=this.foodsBio;
-            this.foodBoolBio=false;
-            this.foodBoolSearch=true;
-        }
-        if (this.foodsAllergCheck){
-            listToParse=this.foodsWithoutAllergens;
-            this.foodBoolAllerg=false;
-            this.foodBoolSearch=true;
-        }
-        if(this.foodsAllCheck){
-            listToParse=this.foodsAll;
-            this.foodBoolAll=false;
-            this.foodBoolSearch=true;
-            console.log("here")
-        }
-        try {
-            for (let entry of listToParse.result) {
-                var string = entry.name.toLowerCase(),
-                    substring = searchbar.value.toLowerCase();
-                var index = string.indexOf(substring);
-                if (index != -1) {
-                    console.log(entry)
-                    this.foodsSearch.push(entry)
-                    console.log(this.foodsSearch)
-                }
+        if (searchbar.value == "") {
+            this.server.getAllProducts()
+                .subscribe(data => {
+                        this.foodsAll = data;
+                        // this.foodsList = data;
+                    }, err => {
+                    }
+                );
+            this.foodBoolAll = true;
+            this.foodsAllCheck = true;
+        } else {
+            let listToParse;
+            this.foodsSearch = [];
+            if (this.foodsBioCheck) {
+                listToParse = this.foodsBio;
+                this.foodBoolBio = false;
+                this.foodBoolSearch = true;
             }
-        }
-        catch (e) {
+            if (this.foodsAllergCheck) {
+                listToParse = this.foodsWithoutAllergens;
+                this.foodBoolAllerg = false;
+                this.foodBoolSearch = true;
+            }
+            if (this.foodsAllCheck) {
+                listToParse = this.foodsAll;
+                this.foodBoolAll = false;
+                this.foodBoolSearch = true;
+            }
+            try {
+                for (let entry of listToParse.result) {
+                    var string = entry.name.toLowerCase(),
+                        substring = searchbar.value.toLowerCase();
+                    var index = string.indexOf(substring);
+                    if (index != -1) {
+                        this.foodsSearch.push(entry)
+                    }
+                }
+            } catch (e) {
+            }
         }
 
     }

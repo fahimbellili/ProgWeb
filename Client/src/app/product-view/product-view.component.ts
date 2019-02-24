@@ -24,6 +24,7 @@ export class ProductViewComponent implements OnInit {
     foodsAllCheck = false;
     foodsBioCheck = false;
     foodsAllergCheck = false;
+    isLoading = false;
 
     constructor(public server: Server,
                 private http: HttpClient,
@@ -36,6 +37,7 @@ export class ProductViewComponent implements OnInit {
             .subscribe(data => {
                     this.foodsAll = data;
                     // this.foodsList = data;
+                    this.isLoading = true;
                 }, err => {
                     console.log(err);
                 }

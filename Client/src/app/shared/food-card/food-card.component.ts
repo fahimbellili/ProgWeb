@@ -3,6 +3,7 @@ import {ModalComponent} from '../modal/modal.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {Server} from '../../../../providers/server';
 import {AddPriceModalComponent} from "../../price-view/add-price-modal/add-price-modal.component";
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
     selector: 'app-food-card',
@@ -16,10 +17,11 @@ export class FoodCardComponent implements OnInit {
     resultReq: any;
     defaultUrl = 'https://static.thenounproject.com/png/220984-200.png';
 
-    constructor(private modalService: BsModalService, public server: Server) {
+    constructor(private modalService: BsModalService, public server: Server, private spinner: NgxSpinnerService) {
     }
 
     ngOnInit() {
+
     }
 
     openModal() {

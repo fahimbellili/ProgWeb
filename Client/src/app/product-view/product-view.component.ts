@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Server} from '../../../providers/server';
-import {NgxSpinnerService} from "ngx-spinner";
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
     selector: 'app-product-view',
@@ -23,6 +23,7 @@ export class ProductViewComponent implements OnInit {
     foodsBioCheck = false;
     foodsAllergCheck = false;
     isLoading = false;
+    pageBool = false;
 
     constructor(public server: Server,
                 private http: HttpClient,
@@ -36,6 +37,8 @@ export class ProductViewComponent implements OnInit {
                     this.foodsAll = data;
                     // this.foodsList = data;
                     this.isLoading = true;
+                    this.pageBool = true;
+                    console.log(data);
                 }, err => {
                     console.log(err);
                 }
@@ -45,7 +48,7 @@ export class ProductViewComponent implements OnInit {
     }
 
     onEnterKey(event: any, searchbar) {
-        if (searchbar.value == "") {
+        if (searchbar.value == '') {
             this.server.getAllProducts()
                 .subscribe(data => {
                         this.foodsAll = data;
@@ -79,7 +82,7 @@ export class ProductViewComponent implements OnInit {
                         substring = searchbar.value.toLowerCase();
                     var index = string.indexOf(substring);
                     if (index != -1) {
-                        this.foodsSearch.push(entry)
+                        this.foodsSearch.push(entry);
                     }
                 }
             } catch (e) {
@@ -94,24 +97,23 @@ export class ProductViewComponent implements OnInit {
                 .subscribe(data => {
                         this.foodsAll = data;
                         // this.foodsList = data;
+                        this.foodBoolAll = true;
                     }, err => {
                         console.log(err);
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = true;
             this.foodsAllergCheck = false;
             this.foodsBioCheck = false;
-        }
 
-        this.foodBoolAll = true;
+        }
         this.foodBoolBio = false;
         this.foodBoolAllerg = false;
     }
 
     getBioProducts(e) {
+        this.isLoading = false;
         if (e.target.checked) {
             // console.log(this.foodsBio = this.server.getAlimentsBio().responseText);
             // this.foodsBio = JSON.parse(this.server.getAlimentsBio().responseText);
@@ -119,24 +121,26 @@ export class ProductViewComponent implements OnInit {
             this.server.getAllAlimentsBio()
                 .subscribe(data => {
                         this.foodsBio = data;
+                        this.isLoading = true;
+                        this.foodBoolBio = true;
+                        console.log('bio', data);
                     }, err => {
                         console.log(err);
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = false;
             this.foodsAllergCheck = false;
             this.foodsBioCheck = true;
         }
 
-        this.foodBoolBio = true;
+
         this.foodBoolAll = false;
         this.foodBoolAllerg = false;
     }
 
     getWithoutAllergensProduct(e) {
+        this.isLoading = false;
         if (e.target.checked) {
             // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
             // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);
@@ -144,19 +148,18 @@ export class ProductViewComponent implements OnInit {
             this.server.getAllAlimentsWithoutAllergens()
                 .subscribe(data => {
                         this.foodsWithoutAllergens = data;
+                        this.isLoading = true;
+                    this.foodBoolAllerg = true;
                     }, err => {
                         console.log(err);
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = false;
             this.foodsAllergCheck = true;
             this.foodsBioCheck = false;
         }
 
-        this.foodBoolAllerg = true;
         this.foodBoolAll = false;
         this.foodBoolBio = false;
     }

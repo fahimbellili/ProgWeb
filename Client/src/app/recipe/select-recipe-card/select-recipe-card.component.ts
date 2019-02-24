@@ -28,16 +28,24 @@ export class SelectRecipeCardComponent implements OnInit {
     }
 
     getImgUrl() {
-        const o = this.food;
+        const foodObj = this.food;
         let url = this.defaultUrl;
-        if (o.images.hasOwnProperty('front_fr')) {
-            let id;
-            if (o.id.length === 13) {
-                id = o.id.substring(0, 3) + '/' + o.id.substring(3, 6) + '/' + o.id.substring(6, 9) + '/' + o.id.substring(9, 13);
+        if ((foodObj.hasOwnProperty('images'))) {
+            if ((foodObj.images.hasOwnProperty('front_fr'))) {
+                let id;
+                if (foodObj.id.length === 13) {
+                    id = foodObj.id.substring(0, 3) + '/' + foodObj.id.substring(3, 6) + '/' + foodObj.id.substring(6, 9) + '/' + foodObj.id.substring(9, 13);
+                } else {
+                    id = foodObj.id;
+                }
+                url = 'https://static.openfoodfacts.org/images/products/' + id + '/front_fr.' + foodObj.images['front_fr'].rev + '.200.jpg';
+
             } else {
-                id = o.id;
+                url = this.defaultUrl;
             }
-            url = 'https://static.openfoodfacts.org/images/products/' + id + '/front_fr.' + o.images['front_fr'].rev + '.200.jpg';
+
+        } else {
+            url = this.defaultUrl;
         }
         return url;
     }

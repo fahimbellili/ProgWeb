@@ -25,6 +25,7 @@ export class AddRecipeViewComponent implements OnInit {
     foodsBioCheck = false;
     foodsAllergCheck = false;
     recipeItems: any[] = [];
+    isLoading = false;
 
     constructor(public server: Server,
                 private http: HttpClient,
@@ -37,6 +38,7 @@ export class AddRecipeViewComponent implements OnInit {
         this.server.getAllProducts().subscribe(
             data => {
                 this.foodsAll = data;
+                this.isLoading = true;
             }
         );
 

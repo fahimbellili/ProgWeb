@@ -29,6 +29,17 @@
                 [food]="food">
 
         </app-food-card>
+
+        <div class="ngxPagination" *ngIf="pageBool">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="10"
+                                 directionLinks="true"
+                                 responsive="true">
+            </pagination-controls>
+        </div>
     </main>
 
     <main class="cards" *ngIf="foodBoolBio">
@@ -36,7 +47,18 @@
                 *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
                 [food]="food">
 
-        </app-food-card>
+        </app-food-card>*
+
+        <div class="ngxPagination" *ngIf="pageBool">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="10"
+                                 directionLinks="true"
+                                 responsive="true">
+            </pagination-controls>
+        </div>
     </main>
 
     <main class="cards" *ngIf="foodBoolAllerg">
@@ -45,6 +67,17 @@
                 [food]="food">
 
         </app-food-card>
+
+        <div class="ngxPagination" *ngIf="pageBool">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="10"
+                                 directionLinks="true"
+                                 responsive="true">
+            </pagination-controls>
+        </div>
     </main>
 
     <main class="cards" *ngIf="foodBoolSearch">
@@ -53,19 +86,20 @@
                 [food]="food">
 
         </app-food-card>
+        <div class="ngxPagination" *ngIf="pageBool">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="10"
+                                 directionLinks="true"
+                                 responsive="true">
+            </pagination-controls>
+        </div>
     </main>
 </div>
 <div class="custumSpin" *ngIf="!isLoading">
     <mat-spinner></mat-spinner>
 </div>
 
-<div class="ngxPagination" *ngIf="pageBool">
-    <pagination-controls class="ngxPage"
-                         (pageChange)="p = $event"
-                         previousLabel="Précèdent"
-                         nextLabel="Suivant"
-                         maxSize="10"
-                         directionLinks="true"
-                         responsive="true">
-    </pagination-controls>
-</div>
+

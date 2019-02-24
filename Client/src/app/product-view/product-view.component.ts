@@ -92,12 +92,14 @@ export class ProductViewComponent implements OnInit {
     }
 
     getAllProducts(e) {
+
         if (e.target.checked) {
             this.server.getAllProducts()
                 .subscribe(data => {
                         this.foodsAll = data;
                         // this.foodsList = data;
-                        this.foodBoolAll = true;
+                    this.isLoading = true;
+                    this.foodBoolBio = true;
                     }, err => {
                         console.log(err);
                     }
@@ -108,12 +110,12 @@ export class ProductViewComponent implements OnInit {
             this.foodsBioCheck = false;
 
         }
+
         this.foodBoolBio = false;
         this.foodBoolAllerg = false;
     }
 
     getBioProducts(e) {
-        this.isLoading = false;
         if (e.target.checked) {
             // console.log(this.foodsBio = this.server.getAlimentsBio().responseText);
             // this.foodsBio = JSON.parse(this.server.getAlimentsBio().responseText);
@@ -135,12 +137,12 @@ export class ProductViewComponent implements OnInit {
         }
 
 
+        this.isLoading = false;
         this.foodBoolAll = false;
         this.foodBoolAllerg = false;
     }
 
     getWithoutAllergensProduct(e) {
-        this.isLoading = false;
         if (e.target.checked) {
             // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
             // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);
@@ -159,7 +161,7 @@ export class ProductViewComponent implements OnInit {
             this.foodsAllergCheck = true;
             this.foodsBioCheck = false;
         }
-
+        this.isLoading = false;
         this.foodBoolAll = false;
         this.foodBoolBio = false;
     }

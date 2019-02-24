@@ -112,33 +112,6 @@ async function initAliments() {
         }
     );
 
-    // MongoClient.connect(url, function (err, db) {
-    //         if (err) throw err;
-    //         db = mongoClient.db(dbName);
-    //         const collection = db.collection(collFood);
-    //         collection.find({
-    //             $and: [
-    //                 {"product_name": /.*BIO.*/i},
-    //                 {"allergens_tags": []},
-    //             ]
-    //         }).toArray(function (err, docs) {
-    //             alimentsBioAndWithoutAllergen = _.sortBy(
-    //                 docs
-    //                     .map(doc => {
-    //                         return {
-    //                             id: doc._id,
-    //                             name: doc.product_name,
-    //                             images: doc.images
-    //                         };
-    //                     })
-    //                     .filter(x => {
-    //                         return x != null;
-    //                     }),
-    //             );
-    //         });
-    //     }
-    // );
-
     MongoClient.connect(url, function (err, db) {
             if (err) throw err;
             db = mongoClient.db(dbName);
@@ -169,19 +142,19 @@ GET :
 
 app.get("/", function (req, res) {
     let print = "<ul>\n" +
-        "  <li>getScore/idProduct ⇒ assign foods an overall score according to some mix of criteria</li>\n" +
-        "  <li>getRecipeBio/ : return les recettes exclusivements composées de produits bio\n</li>\n" +
-        "  <li>getRecipeWithoutAllergens : return les recettes n’ayant pas d’allergens</li>\n" +
-        "  <li>getPrice/idRecipe/ ⇒ determine the price of a given recipe based on the prices of given ingredients</li>\n" +
-        "  <li>/getProduct/id : renvoie le json complet d’un produit en fournissant son identifiant dans le bd.</li>\n" +
-        "  <li>/getAll : renvoie la liste de tous les produits possibles + id (requis pour faire les autres requêtes)</li>\n" +
-        "  <li>/getAlimentsWithoutAllergens Renvoie la liste avec id des aliments qui ne contiennent pas d’allergènes\n</li>\n" +
-        "  <li>getAlimentsBio Renvoie la liste avec id des aliments qui sont BIO\n</li>\n" +
-        "  <li>addRecipe/ : req post ajoute une recette</li>\n" +
-        "  <li>addPrice : req post (price, shop, lat, long, date of entry, nameOfProduct) ajoute un prix </li>\n" +
-        "  <li>addComment/ : req post (pseudoUser, idRecipe, contentComment) : ajoute un commentaire à la recette d’id “id”</li>\n" +
-        "  <li>getComments/idRecipe : return commentaires d’une recette d’id : “id”</li>\n" +
-        "  <li>getRecipe/id : return la recette d’id : “id\"</li>\n" + "</ul>"
+        "  <li>getScore/idProduct/ ⇒ renvoie le score d'un produit : “idProduct”</li>\n" +
+        "  <li>getRecipeBio/ ⇒ renvoie les recettes exclusivements composées de produits bio</li>\n" +
+        "  <li>getRecipeWithoutAllergens/ ⇒ renvoie les recettes n’ayant pas d’allergènes</li>\n" +
+        "  <li>getPrice/idRecipe/ ⇒ détermine le prix d'une recette “idRecipe” en fonction de ses ingrédients</li>\n" +
+        "  <li>getProduct/id/ ⇒ renvoie le json complet d’un produit en fournissant son identifiant dans la bd.</li>\n" +
+        "  <li>getAll/ ⇒ renvoie la liste de tous les produits avec leur nom, id et image</li>\n" +
+        "  <li>getAlimentsWithoutAllergens/ ⇒ renvoie la liste (nom, id et image) des aliments qui ne contiennent pas d’allergènes</li>\n" +
+        "  <li>getAlimentsBio/ ⇒ renvoie la liste (nom, id et image) des aliments bio</li>\n" +
+        "  <li>addRecipe/ ⇒ ajoute une recette à la base de données avec son nom et la liste d'ingrédients qui la compose</li>\n" +
+        "  <li>addPrice/ ⇒ ajoute un prix à un ingrédient (price, shop, lat, long, date of entry, nameOfProduct)</li>\n" +
+        "  <li>addComment/ ⇒ ajoute un commentaire à une recette (pseudoUser, idRecipe, contentComment) : </li>\n" +
+        "  <li>getComments/idRecipe/ ⇒ renvoie les commentaires d’une recette d’id : “id”</li>\n" +
+        "  <li>getRecipe/id/ ⇒ renvoie la recette d’id : “id”</li>\n" + "</ul>"
     res.send(
         print
     )
@@ -205,12 +178,6 @@ app.get("/getAlimentsBio", async function (req, res, next) {
         result: alimentsBio
     })
 });
-
-// app.get("/getAlimentsBioAndWithoutAllergen", async function (req, res, next) {
-//     res.send({
-//         result:
-//     })
-// });
 
 app.get("/getProduct/:id", async function (req, res, next) {
     const id = req.params.id;

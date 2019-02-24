@@ -86,10 +86,6 @@ export class Server {
         return req;
     }
 
-    // getAllAlimentsBioAndWithoutAllergens(): Observable<any> {
-    //     return this.http.get(this.path + '/getAlimentsBioAndWithoutAllergen');
-    // }
-
     //getPrice/idRecipe/
     getPrice(idRecipe) {
         let req = new XMLHttpRequest();

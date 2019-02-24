@@ -10,7 +10,6 @@ export class Server {
 
     constructor(private http: HttpClient) {
         this.path = 'https://offserver2019.herokuapp.com';
-        //this.path = 'http://localhost:8080';
     }
 
     getAllPath() {

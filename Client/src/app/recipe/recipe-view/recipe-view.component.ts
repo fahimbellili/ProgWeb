@@ -12,6 +12,7 @@ export class RecipeViewComponent implements OnInit {
     recipesSearch: any[] = [];
     recipesBio: any;
     recipesWithoutAllergens: any;
+    p;
 
     foodsList: any;
 

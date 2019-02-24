@@ -9,6 +9,8 @@ import {BsModalRef} from "ngx-bootstrap";
 export class AddPriceModalComponent implements OnInit {
 
     @Input() data: string;
+    idProduct;
+    productName;
 
     constructor(public modalRef: BsModalRef) {
     }

@@ -24,7 +24,7 @@ export class AddRecipeViewComponent implements OnInit {
     foodsAllCheck = false;
     foodsBioCheck = false;
     foodsAllergCheck = false;
-    private recipeItems: any[] = [];
+    recipeItems: any[] = [];
 
     constructor(public server: Server,
                 private http: HttpClient,

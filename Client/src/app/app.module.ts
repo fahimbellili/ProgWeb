@@ -15,7 +15,6 @@ import {ModalModule} from 'ngx-bootstrap';
 import {ModalComponent} from './shared/modal/modal.component';
 
 import {PriceViewComponent} from './price-view/price-view.component';
-import {CardFoodPriceComponent} from './price-view/card-food-price/card-food-price.component';
 import {AddPriceModalComponent} from './price-view/add-price-modal/add-price-modal.component';
 
 import {RecipeCardComponent} from './recipe/recipe-card/recipe-card.component';
@@ -46,7 +45,6 @@ const appRoutes: Routes = [
         FoodCardComponent,
         ModalComponent,
         PriceViewComponent,
-        CardFoodPriceComponent,
         AddPriceModalComponent,
         RecipeModalComponent,
         RecipeCardComponent,

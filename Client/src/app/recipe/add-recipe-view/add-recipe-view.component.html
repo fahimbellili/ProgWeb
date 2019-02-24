@@ -11,19 +11,6 @@
                         [food]="food">
 
                 </app-select-recipe-card>
-
-                <div class="ngxPagination" *ngIf="isLoading">
-                    <pagination-controls class="ngxPage"
-                                         (pageChange)="p = $event"
-                                         previousLabel="Précèdent"
-                                         nextLabel="Suivant"
-                                         maxSize="6"
-                                         directionLinks="true"
-                                         autoHide="true"
-                                         responsive="true">
-                    </pagination-controls>
-                </div>
-
             </main>
 
             <main class="cards" *ngIf="foodBoolBio">
@@ -48,6 +35,17 @@
                         [food]="food">
                 </app-select-recipe-card>
             </main>
+        </div>
+        <div class="ngxPagination" *ngIf="isLoading">
+            <pagination-controls class="ngxPage"
+                                 (pageChange)="p = $event"
+                                 previousLabel="Précèdent"
+                                 nextLabel="Suivant"
+                                 maxSize="6"
+                                 directionLinks="true"
+                                 autoHide="true"
+                                 responsive="true">
+            </pagination-controls>
         </div>
     </div>
     <div class="right">

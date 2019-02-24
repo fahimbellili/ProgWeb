@@ -9,19 +9,6 @@
                 *ngFor="let recipe of recipesAll?.result | paginate: { itemsPerPage: 10, currentPage: p }"
                 [recipe]="recipe">
         </app-recipe-card>
-
-
-        <div class="ngxPagination" *ngIf="isLoading">
-            <pagination-controls class="ngxPage"
-                                 (pageChange)="p = $event"
-                                 previousLabel="Précèdent"
-                                 nextLabel="Suivant"
-                                 maxSize="6"
-                                 directionLinks="true"
-                                 autoHide="true"
-                                 responsive="true">
-            </pagination-controls>
-        </div>
     </main>
 
     <main class="cards" *ngIf="recipeBoolBio">
@@ -47,6 +34,18 @@
 
         </app-recipe-card>
     </main>
+</div>
+
+<div class="ngxPagination" *ngIf="isLoading">
+    <pagination-controls class="ngxPage"
+                         (pageChange)="p = $event"
+                         previousLabel="Précèdent"
+                         nextLabel="Suivant"
+                         maxSize="15"
+                         directionLinks="true"
+                         autoHide="true"
+                         responsive="true">
+    </pagination-controls>
 </div>
 
 <div class="custumSpin" *ngIf="!isLoading">

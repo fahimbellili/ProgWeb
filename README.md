@@ -13,7 +13,9 @@
 * Node.js
 
 ### 2.2. Client
-* Angular
+* Angular 6
+* Bootstrap 4
+* Material Design
 
 ### 3. Lancement du projet 
 ## 3.1. Serveur

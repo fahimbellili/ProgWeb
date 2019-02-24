@@ -93,7 +93,7 @@ export class ProductViewComponent implements OnInit {
     }
 
     getAllProducts(e) {
-
+        this.isLoading = false;
         if (e.target.checked) {
             this.server.getAllProducts()
                 .subscribe(data => {

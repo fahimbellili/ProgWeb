@@ -42,11 +42,19 @@
                 </div>
 
                 <div class="modal-footer">
-                    <h5> Score : {{score}}</h5>
-                    <div class="star-ratings-css">
-                        <div class="star-ratings-css-top" [ngStyle]= "{'width': score + '%'}"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-                        <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                    <div class="row"></div>
+                    <div class="col-sm-8">
+                        <h5 class="score"> Score : {{score}}</h5>
                     </div>
+                    <div class="col-sm-4">
+                        <div class="star-ratings-css">
+                            <div class="star-ratings-css-top" [ngStyle]="{'width': score + '%'}">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            <div class="star-ratings-css-bottom">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

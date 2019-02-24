@@ -8,7 +8,7 @@ import {MatSnackBar} from "@angular/material";
 @Component({
     selector: 'app-recipe-modal',
     templateUrl: './recipe-modal.component.html',
-    styleUrls: ['./recipe-modal.component.css']
+    styleUrls: ['./recipe-modal.component.scss']
 })
 export class RecipeModalComponent implements OnInit {
 

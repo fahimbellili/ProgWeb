@@ -6,7 +6,7 @@ import {AddPriceModalComponent} from "../add-price-modal/add-price-modal.compone
 @Component({
   selector: 'app-card-food-price',
   templateUrl: './card-food-price.component.html',
-  styleUrls: ['./card-food-price.component.css']
+  styleUrls: ['./card-food-price.component.scss']
 })
 export class CardFoodPriceComponent implements OnInit {
     @Input() food: any;

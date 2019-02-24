@@ -4,7 +4,7 @@ import {BsModalRef} from "ngx-bootstrap";
 @Component({
     selector: 'app-add-price-modal',
     templateUrl: './add-price-modal.component.html',
-    styleUrls: ['./add-price-modal.component.css']
+    styleUrls: ['./add-price-modal.component.scss']
 })
 export class AddPriceModalComponent implements OnInit {
 

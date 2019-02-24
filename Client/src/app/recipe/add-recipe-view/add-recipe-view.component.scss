@@ -28,13 +28,6 @@
   margin-left: 17px;
 }
 
-/*
-.form-inline {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-*/
 @media (max-width: 800px) {
   .form-inline input {
     margin: 10px 0;
@@ -51,23 +44,6 @@
 *::after {
   box-sizing: border-box;
 }
-
-/*html {
-  background-color: #f0f0f0;
-}
-
-body {
-  color: gray;
-  font-family: 'Roboto','Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
-  padding: 1rem;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -moz-font-feature-settings: "liga" on;
-}*/
 
 img {
   height: auto;
@@ -88,101 +64,13 @@ img {
   display: block;
   width: 100%;
 }
-/*
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
-.cards__item {
-  display: flex;
-  padding: 1rem;
-  @media(min-width: 40rem) {
-    width: 50%;
-  }
-  @media(min-width: 56rem) {
-    width: 33.3333%;
-  }
-}
-
-.card {
-  background-color: white;
-  border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  &:hover {
-    .card__image {
-      filter: contrast(100%);
-    }
-  }
-}
-
-.card__content {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  padding: 1rem;
-}
-
-.card__image {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  filter: contrast(70%);
-  //filter: saturate(180%);
-  overflow: hidden;
-  position: relative;
-  transition: filter 0.5s cubic-bezier(.43, .41, .22, .91);;
-
-  &::before {
-    content: "";
-    display: block;
-    padding-top: 56.25%; // 16:9 aspect ratio
-  }
-
-  @media(min-width: 40rem) {
-    &::before {
-      padding-top: 66.6%; // 3:2 aspect ratio
-    }
-  }
-}
-
-
-.card__title {
-  color: darkgray;
-  font-size: 1.25rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-.card__text {
-  flex: 1 1 auto;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  margin-bottom: 1.25rem;
-}
-*/
 .custom-control {
   margin-left: auto;
   margin-right: auto;
   padding-top: 3%;
   font-size: 1.25em;
 }
-
-/*.ngxPage {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}*/
 
 div#list {
   //float:right;
@@ -193,14 +81,19 @@ div#list {
 
 .inputBtn {
   position: relative;
-  margin-left: 1%;
-  margin-right: 5px;
+  //margin-left: 1%;
+  margin-right: 15px;
   font-size: 18px;
   padding: 0.3em 0.75em;
   width: 60%;
   border: none;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+}
+
+.matCard {
+  width: 98%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .cards {
@@ -216,7 +109,7 @@ div#list {
   color: black;
 }
 
-.ngxPagination /deep/ .ngx-pagination  {
+.ngxPagination /deep/ .ngx-pagination {
   position: relative;
   top: 20px;
   left: 30%;
@@ -229,11 +122,11 @@ div#list {
 
 .left {
   //background: darkseagreen;
-  flex-basis: 25%;
+  flex-basis: 70%;
 }
 
 .right {
   //background: green;
-  flex-basis: 75%;
-
+  flex-basis: 30%;
 }
+

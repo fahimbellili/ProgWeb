@@ -9,12 +9,12 @@
 * Théo Cholley   :
 
 ### 2. Technologies utilisées : 
-## 2.1. Serveur
+#### 2.1. Serveur
 * Node.js
 
-## 2.2. Client
+### 2.2. Client
 * Angular
 
-### 2. Lancement du projet 
-## 2.1. Serveur
-## 2.2. Client
+### 3. Lancement du projet 
+## 3.1. Serveur
+## 3.2. Client

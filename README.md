@@ -26,7 +26,7 @@ Pour le lancer en local, ouvrir un terminal dans le dossier "Server" puis faire 
 `npm install`  
 `npm start`  
 Pour utiliser le serveur local avec le client, aller dans "ProgWeb\Client\providers\server.ts" et modifier à ligne 12 :  
-`this.path = 'https://offserver2019.herokuapp.com';`  
+`this.path = 'https://progweb2019server.herokuapp.com';`  
 par `this.path = 'http://localhost:8080';`
 
 #### 3.2. Client

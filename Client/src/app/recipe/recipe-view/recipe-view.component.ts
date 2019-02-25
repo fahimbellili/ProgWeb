@@ -105,9 +105,9 @@ export class RecipeViewComponent implements OnInit {
             this.server.getRecipesBio()
                 .subscribe(data => {
                         this.recipesBio = data;
-                    this.recipeBoolBio = true;
-                    this.recipeBoolAll = false;
-                    console.log(data)
+                        this.recipeBoolBio = true;
+                        this.recipeBoolAll = false;
+                        console.log(data);
                     }, err => {
                     }
                 );

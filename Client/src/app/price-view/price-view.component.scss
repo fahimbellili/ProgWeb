@@ -51,8 +51,10 @@ div#list {
 }
 
 .custumSpin {
+  position: absolute;
+  margin-left: 45%;
+  top: 40%;
   display: flex;
-  margin-top: 15%;
   justify-content: center;
   align-items: center;
 }

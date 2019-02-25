@@ -9,7 +9,7 @@ export class Server {
     path: string;
 
     constructor(private http: HttpClient) {
-        this.path = 'https://offserver2019.herokuapp.com';
+        this.path = 'https://progweb2019server.herokuapp.com';
     }
 
     getAllScore(idProduct): Observable<any> {

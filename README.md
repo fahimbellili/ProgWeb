@@ -21,7 +21,7 @@ Chaque membre du groupe a travaillé sur toutes les parties du projet.
 
 #### 3.1. Serveur
 
-Le serveur est hébergé à l'adresse <https://offserver2019.herokuapp.com>    
+Le serveur est hébergé à l'adresse <https://progweb2019server.herokuapp.com/>    
 Pour le lancer en local, ouvrir un terminal dans le dossier "Server" puis faire :  
 `npm install`  
 `npm start`  

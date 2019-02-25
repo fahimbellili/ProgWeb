@@ -14,6 +14,7 @@ export class PriceViewComponent implements OnInit {
     myFoodyMap: any;
     foods = [];
     prices = [];
+    isLoading = false;
 
     constructor(public server: Server) {
     }
@@ -22,12 +23,12 @@ export class PriceViewComponent implements OnInit {
         this.server.getAllProducts().subscribe(
             data => {
                 this.foods = data.result;
+                this.isLoading = true;
             }
         );
         this.server.getAllPrices().subscribe(
             data => {
                 this.prices = data.result;
-                console.log(this.prices);
                 this.loadmap();
             }
         );
@@ -44,7 +45,6 @@ export class PriceViewComponent implements OnInit {
             setView: true,
             maxZoom: 12
         }).on('locationerror', (err) => {
-            console.log(err);
         });
         var monIcone = L.icon({
             iconUrl: 'https://image.flaticon.com/icons/svg/126/126083.svg',

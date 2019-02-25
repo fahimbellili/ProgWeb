@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Server} from "../../../../providers/server";
-import {HttpClient} from "@angular/common/http";
+import {Server} from '../../../../providers/server';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
     selector: 'app-recipe-view',
@@ -43,14 +43,13 @@ export class RecipeViewComponent implements OnInit {
 
 
     onEnterKey(event: any, searchbar) {
-        if (searchbar.value == "") {
+        if (searchbar.value == '') {
             this.recipesSearch = [];
             this.server.getAllRecipes()
                 .subscribe(data => {
                         this.recipesAll = data;
                         // this.foodsList = data;
                     }, err => {
-                        console.log(err);
                     }
                 );
             this.recipeBoolAll = true;
@@ -72,7 +71,6 @@ export class RecipeViewComponent implements OnInit {
                 listToParse = this.recipesAll;
                 this.recipeBoolAll = false;
                 this.recipeBoolSearch = true;
-                console.log("here")
             }
             try {
                 for (let entry of listToParse.result) {
@@ -80,9 +78,8 @@ export class RecipeViewComponent implements OnInit {
                         substring = searchbar.value.toLowerCase();
                     var index = string.indexOf(substring);
                     if (index != -1) {
-                        console.log(entry)
-                        this.recipesSearch.push(entry)
-                        console.log(this.recipesSearch)
+                        this.recipesSearch.push(entry);
+
                     }
                 }
             } catch (e) {
@@ -112,14 +109,11 @@ export class RecipeViewComponent implements OnInit {
 
     getBioProducts(e) {
         if (e.target.checked) {
-            // console.log(this.foodsBio = this.server.getAlimentsBio().responseText);
-            // this.foodsBio = JSON.parse(this.server.getAlimentsBio().responseText);
 
             this.server.getRecipesBio()
                 .subscribe(data => {
                         this.recipesBio = data;
                     }, err => {
-                        console.log(err);
                     }
                 );
         }
@@ -137,14 +131,10 @@ export class RecipeViewComponent implements OnInit {
 
     getWithoutAllergensProduct(e) {
         if (e.target.checked) {
-            // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
-            // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);
-
             this.server.getRecipesWithoutAllergens()
                 .subscribe(data => {
                         this.recipesWithoutAllergens = data;
                     }, err => {
-                        console.log(err);
                     }
                 );
         }

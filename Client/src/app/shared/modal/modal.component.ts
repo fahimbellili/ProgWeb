@@ -20,14 +20,12 @@ export class ModalComponent implements OnInit {
     ngOnInit() {
         var i;
         this.server.getAllScore(this.title[0]._id).subscribe(data => {
-            console.log(data.result[0].score);
             this.score = data.result[0].score;
 
         });
 
         this.server.getAllPrices().subscribe(data => {
             this.price = data;
-            console.log(this.price);
         });
 
     }

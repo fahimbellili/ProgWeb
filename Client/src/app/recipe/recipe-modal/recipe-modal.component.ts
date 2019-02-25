@@ -30,7 +30,6 @@ export class RecipeModalComponent implements OnInit {
 
     openDetails(product) {
         this.productDetails = JSON.parse(this.server.getProduct(product.id).responseText);
-        console.log(this.productDetails.result)
         this.modalRef = this.modalService.show(ModalComponent, {
             initialState: {
                 title: this.productDetails.result,

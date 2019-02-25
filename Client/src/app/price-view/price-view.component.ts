@@ -14,6 +14,7 @@ export class PriceViewComponent implements OnInit {
     myFoodyMap: any;
     foods = [];
     prices = [];
+    isLoading = false;
 
     constructor(public server: Server) {
     }
@@ -22,6 +23,7 @@ export class PriceViewComponent implements OnInit {
         this.server.getAllProducts().subscribe(
             data => {
                 this.foods = data.result;
+                this.isLoading = true;
             }
         );
         this.server.getAllPrices().subscribe(

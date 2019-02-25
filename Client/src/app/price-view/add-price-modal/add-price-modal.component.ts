@@ -19,10 +19,6 @@ export class AddPriceModalComponent implements OnInit {
     }
 
     onClickSubmit(idProduct, productName, data) {
-        console.log("idProduct : " + idProduct);
-        console.log("productName : " + productName);
-        console.log("data : ");
-        console.log(data);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(displayLocationInfo);
         }
@@ -59,7 +55,6 @@ export class AddPriceModalComponent implements OnInit {
                     });
                     const content = await response.json();
 
-                    console.log(content);
                 })();
             }
 

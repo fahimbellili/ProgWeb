@@ -47,7 +47,7 @@
                 *ngFor="let food of foodsBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
                 [food]="food">
 
-        </app-food-card>*
+        </app-food-card>
 
         <div class="ngxPagination" *ngIf="pageBool">
             <pagination-controls class="ngxPage"

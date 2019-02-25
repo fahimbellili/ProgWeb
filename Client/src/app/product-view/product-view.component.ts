@@ -38,9 +38,7 @@ export class ProductViewComponent implements OnInit {
                     // this.foodsList = data;
                     this.isLoading = true;
                     this.pageBool = true;
-                    console.log(data);
                 }, err => {
-                    console.log(err);
                 }
             );
         this.foodBoolAll = true;
@@ -102,7 +100,6 @@ export class ProductViewComponent implements OnInit {
                     this.isLoading = true;
                     this.foodBoolBio = true;
                     }, err => {
-                        console.log(err);
                     }
                 );
 
@@ -118,17 +115,13 @@ export class ProductViewComponent implements OnInit {
 
     getBioProducts(e) {
         if (e.target.checked) {
-            // console.log(this.foodsBio = this.server.getAlimentsBio().responseText);
-            // this.foodsBio = JSON.parse(this.server.getAlimentsBio().responseText);
 
             this.server.getAllAlimentsBio()
                 .subscribe(data => {
                         this.foodsBio = data;
                         this.isLoading = true;
                         this.foodBoolBio = true;
-                        console.log('bio', data);
                     }, err => {
-                        console.log(err);
                     }
                 );
 
@@ -145,8 +138,6 @@ export class ProductViewComponent implements OnInit {
 
     getWithoutAllergensProduct(e) {
         if (e.target.checked) {
-            // console.log(this.foodsWithoutAlergens = this.server.getAlimentsWithoutAllergens().responseText);
-            // this.foodsWithoutAlergens = JSON.parse(this.server.getAlimentsWithoutAllergens().responseText);
 
             this.server.getAllAlimentsWithoutAllergens()
                 .subscribe(data => {
@@ -154,7 +145,6 @@ export class ProductViewComponent implements OnInit {
                         this.isLoading = true;
                     this.foodBoolAllerg = true;
                     }, err => {
-                        console.log(err);
                     }
                 );
 

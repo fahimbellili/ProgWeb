@@ -1,6 +1,23 @@
 <div class='app row'>
     <input #searchbar class='search-box' placeholder="Taper le nom d'un produit et appuyer sur Entrée..."
            (keydown.enter)="onEnterKey($event, searchbar)" (keydown.enter)="searchbar.value = ''">
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_01" (change)="getAllProducts($event)"
+               [checked]="foodsAllCheck">
+        <label class="custom-control-label" for="check_01">Tous les aliments</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_02" (change)="getBioProducts($event)"
+               [checked]="foodsBioCheck">
+        <label class="custom-control-label" for="check_02">Aliments Bio</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_03" (change)="getWithoutAllergensProduct($event)"
+               [checked]="foodsAllergCheck">
+        <label class="custom-control-label" for="check_03">Aliments sans allergène</label>
+    </div>
 </div>
 <div class="wrap">
     <div class="left">
@@ -56,7 +73,7 @@
                         (click)="addRecipe(name)">Ajouter la recette
                 </button>
                 <button *ngIf="recipeItems.length!=0 && name.value!=''" [disabled]="false" mat-raised-button
-                        (click)="addRecipe(name)">Ajouter la recette
+                        (click)="addRecipe(name)" (click)="name.value=''">Ajouter la recette
                 </button>
             </form>
             <br>

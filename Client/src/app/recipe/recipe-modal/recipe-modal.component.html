@@ -18,7 +18,8 @@
                         <li *ngFor="let ing of title.ingredients">
                             {{ing.name}}
                         </li>
-                        <p *ngIf="cptNot>0" style="margin-top: 10px">Recette à partir de {{recipePrice}}€ (moyenne des prix constatés). {{cptNot}} articles n'ont pas encore de prix</p>
+                        <p *ngIf="cptNot>0 && recipePrice!=0" style="margin-top: 10px">Recette à partir de {{recipePrice}}€ (moyenne des prix constatés). {{cptNot}} articles n'ont pas encore de prix.</p>
+                        <p *ngIf="cptNot>0 && recipePrice==0" style="margin-top: 10px">{{cptNot}} articles n'ont pas encore de prix, soit tous les articles de la recette.</p>
                         <p *ngIf="cptNot==0" style="margin-top: 10px">Recette à partir de {{recipePrice}}€ (moyenne des prix constatés).</p>
                     </ul>
                 </div>

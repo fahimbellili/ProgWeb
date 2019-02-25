@@ -10,19 +10,16 @@ import {HttpClient} from '@angular/common/http';
 export class RecipeViewComponent implements OnInit {
     recipesAll;
     recipesSearch: any[] = [];
-    recipesBio: any;
-    recipesWithoutAllergens: any;
+    recipesBio: any[] = [];
     p;
 
     foodsList: any;
 
     recipeBoolAll = false;
     recipeBoolBio = false;
-    recipeBoolAllerg = false;
     recipeBoolSearch = false;
     recipesAllCheck = false;
     recipesBioCheck = false;
-    recipesAllergCheck = false;
     isLoading = false;
 
     constructor(public server: Server,
@@ -62,11 +59,6 @@ export class RecipeViewComponent implements OnInit {
                 this.recipeBoolBio = false;
                 this.recipeBoolSearch = true;
             }
-            if (this.recipesAllergCheck) {
-                listToParse = this.recipesWithoutAllergens;
-                this.recipeBoolAllerg = false;
-                this.recipeBoolSearch = true;
-            }
             if (this.recipesAllCheck) {
                 listToParse = this.recipesAll;
                 this.recipeBoolAll = false;
@@ -92,18 +84,18 @@ export class RecipeViewComponent implements OnInit {
             this.server.getAllRecipes().subscribe(
                 data => {
                     this.recipesAll = data;
+                    this.recipeBoolBio = false;
+                    this.recipeBoolAll = true;
                 }
             );
         }
 
         if (e.target.checked) {
             this.recipesAllCheck = true;
-            this.recipesAllergCheck = false;
             this.recipesBioCheck = false;
         }
 
         this.recipesAllCheck = true;
-        this.recipesAllergCheck = false;
         this.recipesBioCheck = false;
     }
 
@@ -113,6 +105,9 @@ export class RecipeViewComponent implements OnInit {
             this.server.getRecipesBio()
                 .subscribe(data => {
                         this.recipesBio = data;
+                    this.recipeBoolBio = true;
+                    this.recipeBoolAll = false;
+                    console.log(data)
                     }, err => {
                     }
                 );
@@ -120,35 +115,13 @@ export class RecipeViewComponent implements OnInit {
 
         if (e.target.checked) {
             this.recipesAllCheck = false;
-            this.recipesAllergCheck = false;
             this.recipesBioCheck = true;
         }
 
         this.recipesAllCheck = false;
-        this.recipesAllergCheck = false;
         this.recipesBioCheck = true;
     }
 
-    getWithoutAllergensProduct(e) {
-        if (e.target.checked) {
-            this.server.getRecipesWithoutAllergens()
-                .subscribe(data => {
-                        this.recipesWithoutAllergens = data;
-                    }, err => {
-                    }
-                );
-        }
-
-        if (e.target.checked) {
-            this.recipesAllCheck = false;
-            this.recipesAllergCheck = true;
-            this.recipesBioCheck = false;
-        }
-
-        this.recipesAllCheck = false;
-        this.recipesAllergCheck = true;
-        this.recipesBioCheck = false;
-    }
 }
 
 

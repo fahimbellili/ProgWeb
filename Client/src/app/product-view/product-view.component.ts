@@ -35,7 +35,6 @@ export class ProductViewComponent implements OnInit {
         this.server.getAllProducts()
             .subscribe(data => {
                     this.foodsAll = data;
-                    // this.foodsList = data;
                     this.isLoading = true;
                     this.pageBool = true;
                 }, err => {
@@ -47,16 +46,26 @@ export class ProductViewComponent implements OnInit {
 
     onEnterKey(event: any, searchbar) {
         if (searchbar.value == '') {
-            this.foodsSearch = []
-            this.server.getAllProducts()
-                .subscribe(data => {
-                        this.foodsAll = data;
-                        // this.foodsList = data;
-                    }, err => {
-                    }
-                );
-            this.foodBoolAll = true;
-            this.foodsAllCheck = true;
+            this.foodsSearch = [];
+            if(this.foodsBioCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = false;
+                this.foodBoolAllerg = false;
+                this.foodBoolBio=true;
+            }
+            if(this.foodsAllergCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = false;
+                this.foodBoolAllerg = true;
+                this.foodBoolBio=false;
+            }
+            if(this.foodsAllCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = true;
+                this.foodBoolAllerg = false;
+                this.foodBoolBio=false;
+            }
+
         } else {
             let listToParse;
             this.foodsSearch = [];
@@ -91,14 +100,14 @@ export class ProductViewComponent implements OnInit {
     }
 
     getAllProducts(e) {
+        this.foodBoolSearch = false;
         this.isLoading = false;
         if (e.target.checked) {
             this.server.getAllProducts()
                 .subscribe(data => {
                         this.foodsAll = data;
-                        // this.foodsList = data;
-                    this.isLoading = true;
-                    this.foodBoolBio = true;
+                        this.isLoading = true;
+                        this.foodBoolAll = true;
                     }, err => {
                     }
                 );
@@ -114,6 +123,7 @@ export class ProductViewComponent implements OnInit {
     }
 
     getBioProducts(e) {
+        this.foodBoolSearch = false;
         if (e.target.checked) {
 
             this.server.getAllAlimentsBio()
@@ -137,13 +147,14 @@ export class ProductViewComponent implements OnInit {
     }
 
     getWithoutAllergensProduct(e) {
+        this.foodBoolSearch = false;
         if (e.target.checked) {
 
             this.server.getAllAlimentsWithoutAllergens()
                 .subscribe(data => {
                         this.foodsWithoutAllergens = data;
                         this.isLoading = true;
-                    this.foodBoolAllerg = true;
+                        this.foodBoolAllerg = true;
                     }, err => {
                     }
                 );

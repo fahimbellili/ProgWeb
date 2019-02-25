@@ -1,6 +1,18 @@
 <div class='app row'>
     <input #searchbar class='search-box' placeholder="Taper le nom d'une recette et appuyer sur Entrée..."
            (keydown.enter)="onEnterKey($event, searchbar)" (keydown.enter)="searchbar.value = ''">
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_01" (change)="getAllProducts($event)"
+               [checked]="recipesAllCheck">
+        <label class="custom-control-label" for="check_01">Toutes les recettes</label>
+    </div>
+
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="check_02" (change)="getBioProducts($event)"
+               [checked]="recipesBioCheck">
+        <label class="custom-control-label" for="check_02">Recettes bio</label>
+    </div>
 </div>
 
 <div class="container">
@@ -15,15 +27,6 @@
         <app-recipe-card
                 *ngFor="let recipe of recipesBio?.result | paginate: { itemsPerPage: 10, currentPage: p }"
                 [recipe]="recipe">
-
-        </app-recipe-card>
-    </main>
-
-    <main class="cards" *ngIf="recipeBoolAllerg">
-        <app-recipe-card
-                *ngFor="let recipe of recipesWithoutAllergens?.result | paginate: { itemsPerPage: 10, currentPage: p }"
-                [recipe]="recipe">
-
         </app-recipe-card>
     </main>
 

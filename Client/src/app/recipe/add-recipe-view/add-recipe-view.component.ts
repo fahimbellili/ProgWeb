@@ -2,6 +2,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {Server} from '../../../../providers/server';
 import {HttpClient} from '@angular/common/http';
 import {RecipeItemsService} from '../../../../providers/recipe-items.service';
+import {MatSnackBar} from "@angular/material";
 
 @Component({
     selector: 'app-add-recipe-view',
@@ -29,6 +30,7 @@ export class AddRecipeViewComponent implements OnInit {
 
     constructor(public server: Server,
                 private http: HttpClient,
+                private snackBar: MatSnackBar,
                 private recipeItemsService: RecipeItemsService) {
         this.recipeItemsService.setList(this.recipeItems);
     }
@@ -69,6 +71,9 @@ export class AddRecipeViewComponent implements OnInit {
         let list: any[] = [];
         this.recipeItemsService.setList(list);
         this.recipeItems = this.recipeItemsService.getList();
+        this.snackBar.open("Votre recette a bien été ajoutée!", "OK", {
+            duration: 2000,
+        });
     }
 
     deleteItem(index) {
@@ -80,15 +85,25 @@ export class AddRecipeViewComponent implements OnInit {
     onEnterKey(event: any, searchbar) {
         if (searchbar.value == '') {
             this.foodsSearch = [];
-            this.server.getAllProducts()
-                .subscribe(data => {
-                        this.foodsAll = data;
-                        // this.foodsList = data;
-                    }, err => {
-                    }
-                );
-            this.foodBoolAll = true;
-            this.foodsAllCheck = true;
+            if(this.foodsBioCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = false;
+                this.foodBoolAllerg = false;
+                this.foodBoolBio=true;
+            }
+            if(this.foodsAllergCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = false;
+                this.foodBoolAllerg = true;
+                this.foodBoolBio=false;
+            }
+            if(this.foodsAllCheck){
+                this.foodBoolSearch = false;
+                this.foodBoolAll = true;
+                this.foodBoolAllerg = false;
+                this.foodBoolBio=false;
+            }
+
         } else {
             let listToParse;
             this.foodsSearch = [];
@@ -119,74 +134,76 @@ export class AddRecipeViewComponent implements OnInit {
             } catch (e) {
             }
         }
+
     }
 
     getAllProducts(e) {
+        this.foodBoolSearch = false;
+        this.isLoading = false;
         if (e.target.checked) {
             this.server.getAllProducts()
                 .subscribe(data => {
                         this.foodsAll = data;
-                        // this.foodsList = data;
+                        this.isLoading = true;
+                        this.foodBoolAll = true;
                     }, err => {
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = true;
             this.foodsAllergCheck = false;
             this.foodsBioCheck = false;
+
         }
 
-        this.foodBoolAll = true;
         this.foodBoolBio = false;
         this.foodBoolAllerg = false;
     }
 
     getBioProducts(e) {
+        this.foodBoolSearch = false;
         if (e.target.checked) {
 
             this.server.getAllAlimentsBio()
                 .subscribe(data => {
                         this.foodsBio = data;
+                        this.isLoading = true;
+                        this.foodBoolBio = true;
                     }, err => {
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = false;
             this.foodsAllergCheck = false;
             this.foodsBioCheck = true;
         }
 
-        this.foodBoolBio = true;
+
+        this.isLoading = false;
         this.foodBoolAll = false;
         this.foodBoolAllerg = false;
     }
 
     getWithoutAllergensProduct(e) {
+        this.foodBoolSearch = false;
         if (e.target.checked) {
 
             this.server.getAllAlimentsWithoutAllergens()
                 .subscribe(data => {
                         this.foodsWithoutAllergens = data;
+                        this.isLoading = true;
+                        this.foodBoolAllerg = true;
                     }, err => {
-
                     }
                 );
-        }
 
-        if (e.target.checked) {
             this.foodsAllCheck = false;
             this.foodsAllergCheck = true;
             this.foodsBioCheck = false;
         }
-
-        this.foodBoolAllerg = true;
+        this.isLoading = false;
         this.foodBoolAll = false;
         this.foodBoolBio = false;
     }
-
 }
 

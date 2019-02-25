@@ -3,8 +3,16 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var cors = require("cors");
 var _ = require("lodash");
-
 var app = express();
+
+
+var https = require('https');
+var fs = require('fs');
+var options = {
+    key: fs.readFileSync('HTTPS/ProgWeb.rsa.pkey'),
+    cert: fs.readFileSync('HTTPS/ProgWeb.crt')
+};
+
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -27,9 +35,17 @@ var idsRecipes = 0;
 /*
 Initialisation
  */
-const mongoClient = new MongoClient(url);
+const mongoClient = new MongoClient(url,{useNewUrlParser: true});
 mongoClient.connect(async function (err) {
     db = mongoClient.db(dbName);
+
+
+    //---- HTTPS Server avec certificats autosigné
+    /*https.createServer(options, app).listen(process.env.PORT || 8080, () => {
+        console.log("OFF - Server running on port 8080");
+    });*/
+
+
     app.listen(process.env.PORT || 8080, () => {
         console.log("OFF - Server running on port 8080");
     });
@@ -37,90 +53,106 @@ mongoClient.connect(async function (err) {
 
 async function initAliments() {
 
-    MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            db = mongoClient.db(dbName);
-            const collection = db.collection(collFood);
-            collection.find({
-                $or: [
-                    {"nutriments.salt_100g": {$exists: true}},
-                    {"nutriments.sugars_100g": {$exists: true}},
-                    {"nutriments.fat_100g": {$exists: true}}
-                ]
-            })
-                .toArray(function (err, docs) {
-                    alimentsName = _.sortBy(
-                        docs
-                            .map(doc => {
-                                return {
-                                    id: doc._id,
-                                    name: doc.product_name,
-                                    images: doc.images
-                                };
-                            })
-                            .filter(x => {
-                                return x != null;
-                            }),
-                    );
-                });
+    MongoClient.connect(url,
+        {useNewUrlParser: true},
+        {
+            function(err, db) {
+                if (err) throw err;
+                db = mongoClient.db(dbName);
+                const collection = db.collection(collFood);
+                collection.find({
+                    $or: [
+                        {"nutriments.salt_100g": {$exists: true}},
+                        {"nutriments.sugars_100g": {$exists: true}},
+                        {"nutriments.fat_100g": {$exists: true}}
+                    ]
+                })
+                    .toArray(function (err, docs) {
+                        alimentsName = _.sortBy(
+                            docs
+                                .map(doc => {
+                                    return {
+                                        id: doc._id,
+                                        name: doc.product_name,
+                                        images: doc.images
+                                    };
+                                })
+                                .filter(x => {
+                                    return x != null;
+                                }),
+                        );
+                    });
+            }
         }
     );
 
-    MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            db = mongoClient.db(dbName);
-            const collection = db.collection(collFood);
-            collection.find({"allergens_tags": []})
-                .toArray(function (err, docs) {
-                    alimentsWithoutAllergens = _.sortBy(
-                        docs
-                            .map(doc => {
-                                return {
-                                    id: doc._id,
-                                    name: doc.product_name,
-                                    images: doc.images
-                                };
-                            })
-                            .filter(x => {
-                                return x != null;
-                            }),
-                    );
-                });
+    MongoClient.connect(url,
+        {useNewUrlParser: true},
+        {
+            function(err, db) {
+                if (err) throw err;
+                db = mongoClient.db(dbName);
+                const collection = db.collection(collFood);
+                collection.find({"allergens_tags": []})
+                    .toArray(function (err, docs) {
+                        alimentsWithoutAllergens = _.sortBy(
+                            docs
+                                .map(doc => {
+                                    return {
+                                        id: doc._id,
+                                        name: doc.product_name,
+                                        images: doc.images
+                                    };
+                                })
+                                .filter(x => {
+                                    return x != null;
+                                }),
+                        );
+                    });
+            }
         }
     );
 
-    MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            db = mongoClient.db(dbName);
-            const collection = db.collection(collFood);
-            collection.find({"product_name": /.*BIO.*/i})
-                .toArray(function (err, docs) {
-                    alimentsBio = _.sortBy(
-                        docs
-                            .map(doc => {
-                                return {
-                                    id: doc._id,
-                                    name: doc.product_name,
-                                    images: doc.images
-                                };
-                            })
-                            .filter(x => {
-                                return x != null;
-                            }),
-                    );
-                });
+    MongoClient.connect(url,
+        {useNewUrlParser: true},
+        {
+            function(err, db) {
+                if (err) throw err;
+                db = mongoClient.db(dbName);
+                const collection = db.collection(collFood);
+                collection.find({"product_name": /.*BIO.*/i})
+                    .toArray(function (err, docs) {
+                        alimentsBio = _.sortBy(
+                            docs
+                                .map(doc => {
+                                    return {
+                                        id: doc._id,
+                                        name: doc.product_name,
+                                        images: doc.images
+                                    };
+                                })
+                                .filter(x => {
+                                    return x != null;
+                                }),
+                        );
+                    });
+            }
         }
     );
 
-    MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            db = mongoClient.db(dbName);
-            const collection = db.collection(collRecipe);
+    MongoClient.connect(url,
+        {useNewUrlParser: true},
+        {
+            function(err, db) {
+                if (err) throw err;
+                db = mongoClient.db(dbName);
+                const collection = db.collection(collRecipe);
 
-            collection.find()
-                .toArray(function (err, docs) {
-                    idsRecipes = docs.length;
-                });
+                collection.find()
+                    .toArray(function (err, docs) {
+                        idsRecipes = docs.length;
+                    });
+            }
         }
     );
 }
@@ -321,7 +353,7 @@ app.get("/getRecipeWithoutAllergens", async function (req, res) {
     });
 });
 
-app.get("/getPrice/:idRecipe",async function (req, res) {
+app.get("/getPrice/:idRecipe", async function (req, res) {
     let idRecipe = req.params.idRecipe;
     let price = 0;
     let productWithoutPrice = 0;
@@ -334,20 +366,20 @@ app.get("/getPrice/:idRecipe",async function (req, res) {
         result[0].ingredients.forEach(function (doc) {
             idsIngredients.push(doc.id);
         });
-        collectionPrice.find().toArray(function(err, result) {
+        collectionPrice.find().toArray(function (err, result) {
             let indexMax = result.length;
             result.forEach(function (doc, index) {
-                let found=false;
+                let found = false;
                 idsIngredients.forEach(function (ingredient) {
-                    if(doc.idOfProduct === ingredient){
-                        price+=+doc.price;
-                        found=true;
+                    if (doc.idOfProduct === ingredient) {
+                        price += +doc.price;
+                        found = true;
                     }
                 });
-                if (!found){
+                if (!found) {
                     productWithoutPrice++;
                 }
-                if (index===indexMax-1){
+                if (index === indexMax - 1) {
                     res.send({
                         result: price,
                         withoutPrice: productWithoutPrice

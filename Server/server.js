@@ -177,7 +177,6 @@ app.get("/", function (req, res) {
         "  <li>getScore/idProduct/ ⇒ renvoie le score d'un produit : “idProduct”</li>\n" +
         "  <li>getRecipeBio/ ⇒ renvoie les recettes exclusivements composées de produits bio</li>\n" +
         "  <li>getRecipeWithoutAllergens/ ⇒ renvoie les recettes n’ayant pas d’allergènes</li>\n" +
-        "  <li>getPrice/idRecipe/ ⇒ détermine le prix d'une recette “idRecipe” en fonction de ses ingrédients</li>\n" +
         "  <li>getProduct/id/ ⇒ renvoie le json complet d’un produit en fournissant son identifiant dans la bd.</li>\n" +
         "  <li>getAll/ ⇒ renvoie la liste de tous les produits avec leur nom, id et image</li>\n" +
         "  <li>getAlimentsWithoutAllergens/ ⇒ renvoie la liste (nom, id et image) des aliments qui ne contiennent pas d’allergènes</li>\n" +
@@ -353,45 +352,6 @@ app.get("/getRecipeWithoutAllergens", async function (req, res) {
     });
 });
 
-app.get("/getPrice/:idRecipe", async function (req, res) {
-    let idRecipe = req.params.idRecipe;
-    let price = 0;
-    let productWithoutPrice = 0;
-    const collectionRecipe = db.collection(collRecipe);
-    const collectionPrice = db.collection(collPrices);
-    let idsIngredients = [];
-    let query = {id: +idRecipe};
-    collectionRecipe.find(query).toArray(function (err, result) {
-        if (err) throw err;
-        result[0].ingredients.forEach(function (doc) {
-            idsIngredients.push(doc.id);
-        });
-        collectionPrice.find().toArray(function (err, result) {
-            let indexMax = result.length;
-            result.forEach(function (doc, index) {
-                let found = false;
-                idsIngredients.forEach(function (ingredient) {
-                    if (doc.idOfProduct === ingredient) {
-                        price += +doc.price;
-                        found = true;
-                    }
-                });
-                if (!found) {
-                    productWithoutPrice++;
-                }
-                if (index === indexMax - 1) {
-                    res.send({
-                        result: price,
-                        withoutPrice: productWithoutPrice
-                    });
-                }
-            });
-
-        });
-
-    });
-
-});
 
 app.get("/getAllRecipes", async function (req, res, next) {
     MongoClient.connect(url, function (err) {

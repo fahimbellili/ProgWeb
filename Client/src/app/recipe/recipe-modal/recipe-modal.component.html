@@ -10,15 +10,16 @@
             <div class="card mb-0">
                 <div class="card-header collapsed" data-toggle="collapse" href="#collapseOne">
                     <a class="card-title">
-                        Ingrédients
+                        Ingrédients & Prix
                     </a>
                 </div>
                 <div id="collapseOne" class="card-body collapse" data-parent="#accordion">
                     <ul class="modal-title pull-left">
                         <li *ngFor="let ing of title.ingredients">
-                            <!--button mat-raised-button (click)="openDetails(ing)">{{ing.name}}</button-->
                             {{ing.name}}
                         </li>
+                        <p *ngIf="cptNot>0" style="margin-top: 10px">Recette à partir de {{recipePrice}}€ (moyenne des prix constatés). {{cptNot}} articles n'ont pas encore de prix</p>
+                        <p *ngIf="cptNot==0" style="margin-top: 10px">Recette à partir de {{recipePrice}}€ (moyenne des prix constatés).</p>
                     </ul>
                 </div>
                 <div class="card-header collapsed" data-toggle="collapse" data-parent="#accordion"

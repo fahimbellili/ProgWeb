@@ -14,7 +14,9 @@ export class RecipeModalComponent implements OnInit {
 
     title;
     comments;
-    productDetails;
+    prices;
+    recipePrice;
+    cptNot;
 
     constructor(public modalRef: BsModalRef, private snackBar: MatSnackBar, private modalService: BsModalService, public server: Server) {
 
@@ -26,16 +28,29 @@ export class RecipeModalComponent implements OnInit {
                 this.comments = data.result;
             }
         );
-    }
 
-    openDetails(product) {
-        this.productDetails = JSON.parse(this.server.getProduct(product.id).responseText);
-        this.modalRef = this.modalService.show(ModalComponent, {
-            initialState: {
-                title: this.productDetails.result,
-                data: {}
+        this.server.getAllPrices().subscribe(data => {
+            let totalPrice: number = 0;
+            this.prices = data.result;
+            let cptNot: number = 0;
+            for (let ing of this.title.ingredients) {
+                let cpt: number = 0;
+                let tmpPrice: number = 0;
+                for (let price of this.prices) {
+                    if (price.idOfProduct == ing.id) {
+                        tmpPrice += +price.price;
+                        cpt++;
+                    }
+                }
+                if (cpt > 0) totalPrice += tmpPrice / cpt;
+                else {
+                    cptNot++;
+                }
             }
+            this.recipePrice=Math.round( totalPrice * 100) / 100;
+            this.cptNot=cptNot;
         });
+
     }
 
     sendComment(pseudo, comment) {

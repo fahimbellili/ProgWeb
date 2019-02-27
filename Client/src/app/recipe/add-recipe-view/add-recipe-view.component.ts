@@ -85,23 +85,23 @@ export class AddRecipeViewComponent implements OnInit {
     onEnterKey(event: any, searchbar) {
         if (searchbar.value == '') {
             this.foodsSearch = [];
-            if(this.foodsBioCheck){
+            if (this.foodsBioCheck) {
                 this.foodBoolSearch = false;
                 this.foodBoolAll = false;
                 this.foodBoolAllerg = false;
-                this.foodBoolBio=true;
+                this.foodBoolBio = true;
             }
-            if(this.foodsAllergCheck){
+            if (this.foodsAllergCheck) {
                 this.foodBoolSearch = false;
                 this.foodBoolAll = false;
                 this.foodBoolAllerg = true;
-                this.foodBoolBio=false;
+                this.foodBoolBio = false;
             }
-            if(this.foodsAllCheck){
+            if (this.foodsAllCheck) {
                 this.foodBoolSearch = false;
                 this.foodBoolAll = true;
                 this.foodBoolAllerg = false;
-                this.foodBoolBio=false;
+                this.foodBoolBio = false;
             }
 
         } else {
@@ -124,11 +124,15 @@ export class AddRecipeViewComponent implements OnInit {
             }
             try {
                 for (let entry of listToParse.result) {
-                    var string = entry.name.toLowerCase(),
-                        substring = searchbar.value.toLowerCase();
-                    var index = string.indexOf(substring);
-                    if (index != -1) {
-                        this.foodsSearch.push(entry);
+                    try {
+                        var string = entry.name.toLowerCase(),
+                            substring = searchbar.value.toLowerCase();
+                        var index = string.indexOf(substring);
+                        if (index != -1) {
+                            this.foodsSearch.push(entry);
+                        }
+                    } catch (e) {
+
                     }
                 }
             } catch (e) {

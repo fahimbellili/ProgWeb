@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BsModalRef} from "ngx-bootstrap";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
     selector: 'app-add-price-modal',
@@ -12,7 +13,7 @@ export class AddPriceModalComponent implements OnInit {
     idProduct;
     productName;
 
-    constructor(public modalRef: BsModalRef) {
+    constructor(public modalRef: BsModalRef, private snackBar: MatSnackBar) {
     }
 
     ngOnInit() {
@@ -60,5 +61,9 @@ export class AddPriceModalComponent implements OnInit {
 
             dorequest(data, lat, lng);
         }
+        this.modalRef.hide();
+        this.snackBar.open("Votre prix a été enregistré, merci!", "OK", {
+            duration: 2000,
+        });
     }
 }

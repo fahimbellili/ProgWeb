@@ -86,12 +86,17 @@ export class ProductViewComponent implements OnInit {
             }
             try {
                 for (let entry of listToParse.result) {
-                    var string = entry.name.toLowerCase(),
-                        substring = searchbar.value.toLowerCase();
-                    var index = string.indexOf(substring);
-                    if (index != -1) {
-                        this.foodsSearch.push(entry);
+                    try {
+                        var string = entry.name.toLowerCase(),
+                            substring = searchbar.value.toLowerCase();
+                        var index = string.indexOf(substring);
+                        if (index != -1) {
+                            this.foodsSearch.push(entry);
+                        }
+                    }catch (e) {
+                        
                     }
+                    
                 }
             } catch (e) {
             }
